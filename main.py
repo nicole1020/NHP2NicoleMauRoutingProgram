@@ -546,7 +546,7 @@ dijkstraAlgorithmShorthestPath()
 
 # main - START
 if __name__ == '__main__':
-    print("\nWelcome to C950: Package Delivery Routing Program: Hash Table, CSV Import, Greedy Algorithm, Dijkstra Algorithm")
+    print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm, Dijkstra Algorithm")
 
     # loop until user is satisfied
     isExit = True
