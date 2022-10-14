@@ -70,7 +70,7 @@ def getPackageData():
     print("Packages from Hashtable:")
     # Fetch data from Hash Table
     for i in range(len(myHash.table) + 1):
-        print("Movie: {}".format(myHash.search(i + 1)))  # 1 to 11 is sent to myHash.search()
+        print("Packages: {}".format(myHash.search(i + 1)))  # 1 to 40 is sent to myHash.search()
 
 
 getPackageData()
@@ -533,12 +533,12 @@ def dijkstraAlgorithmShorthestPath():
 
     print("\nDijkstra shortest path with Cities:")
     for v in g.adjacency_list:
-        myMovie = myHash.search(int(v.label))
+        myDelivery = myHash.search(int(v.label))
         if v.pred_vertex is None and v is not vertex_1:
-            print("Salt Lake City to %s ==> no path exists" % myMovie.city)
+            print("Salt Lake City to %s ==> no path exists" % myDelivery.city)
         else:
             print("Salt Lake City to %s ==> %s (total distance: %g)" % (
-            myMovie.city, get_shortest_path_city(vertex_1, v, myHash), v.distance))
+            myDelivery.city, get_shortest_path_city(vertex_1, v, myHash), v.distance))
 
 
 dijkstraAlgorithmShorthestPath()
@@ -546,14 +546,14 @@ dijkstraAlgorithmShorthestPath()
 
 # main - START
 if __name__ == '__main__':
-    print("\nWelcome to C950: Classic Movies: Hash Table, CSV Import, Greedy Algorithm, Dijkstra Algorithm")
+    print("\nWelcome to C950: Package Delivery Routing Program: Hash Table, CSV Import, Greedy Algorithm, Dijkstra Algorithm")
 
     # loop until user is satisfied
     isExit = True
     while (isExit):
         print("\nOptions:")
-        print("1. Get Movie Data")
-        print("2. Run Greedy Algorithm with a Budget")
+        print("1. Get Package Data")
+        print("2. Run Greedy Algorithm with a Time Constraint")
         print("3. Run Dijkstra Algorithm")
         print("4. Exit the Program")
         option = input("Chose an option (1,2,3 or 4): ")
