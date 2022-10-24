@@ -4,7 +4,11 @@ def greedyAlgorithmMinTime(time):
     time1 = 0
     time2 = 0
     time3 = 0
+#1.  Provide screenshots to show the status of all packages at a time between 8:35 a.m. and 9:25 a.m.
 
+#2.  Provide screenshots to show the status of all packages at a time between 9:35 a.m. and 10:25 a.m.
+
+#3.  Provide screenshots to show the status of all packages at a time between 12:03 p.m. and 1:12 p.m.
     while (time >= 25):
         if time1 > 3: # why 3? 0,1,2,3 will not break so 4 times.
             break
