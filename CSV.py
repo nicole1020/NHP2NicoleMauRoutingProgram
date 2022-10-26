@@ -29,7 +29,7 @@ def loadPackageData(fileName, myHash):
             pDeadline = package[5]
             pWeight = package[6]
             pNotes= package[7]
-            pStatus = "loaded"
+            pStatus = " "
 
             # package object
             p = Package(pID, pAddress, pCity, pState, pZip, pDeadline, pWeight, pNotes, pStatus)
