@@ -26,4 +26,4 @@ def greedyAlgorithmMinDistance(distance):
 
 
 
-    print("Mileage for current day".isprintable(total,totalMiles))
+    print("Mileage for current day".format(total,totalMiles))

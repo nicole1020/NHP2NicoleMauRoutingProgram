@@ -73,14 +73,6 @@ def getPackageData():
         print("Packages: {}".format(myHash.search(i + 1)))  # 1 to 40 is sent to myHash.search()
 
 
-getPackageData()
-
-print("\nGreedy Algorithm: Min Expenses => Max Profits")
-greedyAlgorithmMinDistance(102)  # $102.00 budget
-greedyAlgorithmMinDistance(94)  # $94.00 budget
-greedyAlgorithmMinDistance(71)  # $71.00 budget
-greedyAlgorithmMinDistance(200)  # $200.00 budget
-
 
 # main - START
 def getTruckData():
