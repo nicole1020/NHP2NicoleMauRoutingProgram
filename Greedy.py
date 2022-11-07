@@ -1,5 +1,5 @@
 import math
-def greedyAlgorithmMinDistances(distance):
+def greedyAlgorithmMinDistance(distance):
     total = distance
     distance1 = 0
     distance2 = 0
@@ -21,17 +21,9 @@ def greedyAlgorithmMinDistances(distance):
         distance3 += 1
         distance = distance - 5
 
+    # miles calculation
+    totalMiles = distance1 + distance2 + distance3
 
-    dTotal = distance1 + distance2 + distance3
 
-    # expense calculation
-    eDVDs = 1.00 * dTotal # Material cost of DVD: $1.00
-    eLabor = 12.00 * (math.ceil(dTotal/10)) # Labor is $12.00 for every 10 DVDs, $24.00 for 11 DVDs
-    eShipping = 0.50 * dTotal # Shipping cost is $0.50 per DVD
-    eTotal = eDVDs + eLabor + eShipping
-    profit = total - eTotal
 
-    print("${:.2f}-Budget, {}-DVDs, ${:.2f}-Expense, ${:.2f}-Profit ==>".format(total,dTotal,eTotal,profit))
-    print(" {} x 25 dollar movie = ${:.2f}".format(distance1,distance1*25.00))
-    print(" {} x 10 dollar movie = ${:.2f}".format(distance2,distance2*10.00))
-    print(" {} x 5  dollar movie = ${:.2f}".format(distance3,distance3*5.00))
+    print("Mileage for current day".isprintable(total,totalMiles))
