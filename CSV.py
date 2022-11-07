@@ -18,6 +18,14 @@ class Package:
         return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.id, self.address, self.city, self.state, self.zip, self.deadline, self.weight, self.notes, self.status)
 
 
+class Truck:
+    def __init__(self, capacity, speed, load, packages):
+        self.capacity = capacity
+        self.speed = speed
+        self.load = load
+        self.packages = packages
+
+
 def loadPackageData(fileName, myHash):
     with open(fileName) as packages:
         packageData = csv.reader(packages, delimiter=',')
@@ -40,11 +48,8 @@ def loadPackageData(fileName, myHash):
             # insert it into the hash table
             myHash.insert(pID, p)
 
-
-class Truck:
-    def __init__(self, capacity, speed, load, packages):
-        self.capacity = capacity
-        self.speed = speed
-        self.load = load
-        self.packages = packages
-
+#loaddistancedata(filename)
+#loadaddressdata(filename)
+#distanceinbetween(address1, address2)
+#mindistancefromaddress(address,package)
+#deliveringpackages(truck, starttime)
