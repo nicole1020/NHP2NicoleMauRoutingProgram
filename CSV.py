@@ -1,5 +1,6 @@
 import csv
 
+
 class Package:
 
     def __init__(self, id, address, city, state, zip, deadline, weight, notes, status):
@@ -15,6 +16,7 @@ class Package:
 
     def __str__(self):  # overwite print(Package) otherwise it will print object reference
         return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.id, self.address, self.city, self.state, self.zip, self.deadline, self.weight, self.notes, self.status)
+
 
 def loadPackageData(fileName, myHash):
     with open(fileName) as packages:
@@ -37,3 +39,12 @@ def loadPackageData(fileName, myHash):
 
             # insert it into the hash table
             myHash.insert(pID, p)
+
+
+class Truck:
+    def __init__(self, capacity, speed, load, packages):
+        self.capacity = capacity
+        self.speed = speed
+        self.load = load
+        self.packages = packages
+
