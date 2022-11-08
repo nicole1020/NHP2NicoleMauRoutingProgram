@@ -76,7 +76,7 @@ def getPackageData():
 
 # main - START
 def getTruckData():
-    pass
+    print("Trucks:")
 
 
 if __name__ == '__main__':

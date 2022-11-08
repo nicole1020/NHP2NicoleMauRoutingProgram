@@ -25,6 +25,25 @@ class Truck:
         self.load = load
         self.packages = packages
 
+    def __str__(self):
+        return " %s, %s, %s, %s" % (self.capacity, self.speed, self.load, self.packages)
+
+
+class Distance:
+    def __init__(self, distance):
+        self.distance = distance
+
+    def __str__(self):
+        return " %s " % self.distance
+
+
+class Address:
+    def __init__(self, address):
+        self.address = address
+
+    def __str__(self):
+        return " %s " % self.address
+
 
 def loadPackageData(fileName, myHash):
     with open(fileName) as packages:
@@ -38,15 +57,17 @@ def loadPackageData(fileName, myHash):
             pZip = package[4]
             pDeadline = package[5]
             pWeight = package[6]
-            pNotes= package[7]
+            pNotes = package[7]
             pStatus = "Delivered"
 
             # package object
             p = Package(pID, pAddress, pCity, pState, pZip, pDeadline, pWeight, pNotes, pStatus)
-            #print(p)
+            # print(p)
 
             # insert it into the hash table
             myHash.insert(pID, p)
+
+
 
 
 def loadDistanceData(filename, myHash):
@@ -60,7 +81,7 @@ def loadDistanceData(filename, myHash):
             dZip = distance[4]
 
         # distance object
-       # d = Distance(dID, dAddress, dCity, dState, dZip)
+        d = Distance(dID, dAddress, dCity, dState, dZip)
 
 
 def loadaddressdata(filename, myHash):
