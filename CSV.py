@@ -60,23 +60,22 @@ def loadDistanceData(filename, myHash):
             dZip = distance[4]
 
         # distance object
-
-        d = Distances(dID, dAddress, dCity, dState, dZip)
+       # d = Distance(dID, dAddress, dCity, dState, dZip)
 
 
 def loadaddressdata(filename, myHash):
-    with open(filename) as distances:
-        distanceData = csv.reader(distances, delimiter=',')
-        for distance in distanceData:
-            aID = int(distance[0])
-            aAddress = distance[1]
-            aCity = distance[2]
-            aState = distance[3]
-            aZip = distance[4]
+    with open(filename) as address:
+        addressData = csv.reader(address, delimiter=',')
+        for address in addressData:
+            aID = int(address[0])
+            aAddress = address[1]
+            aCity = address[2]
+            aState = address[3]
+            aZip = address[4]
 
         # address object
 
-        a = Address(aID, aAddress, aCity, aState, aZip)
+        #a = Address(aID, aAddress, aCity, aState, aZip)
 
 #distanceinbetween(address1, address2)
 #mindistancefromaddress(address,package)
