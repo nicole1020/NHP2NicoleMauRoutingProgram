@@ -1,4 +1,6 @@
 import math
+
+
 def greedyAlgorithmMinDistance(distance):
     total = distance
     distance1 = 0
@@ -24,6 +26,4 @@ def greedyAlgorithmMinDistance(distance):
     # miles calculation
     totalMiles = distance1 + distance2 + distance3
 
-
-
-    print("Mileage for current day".format(total,totalMiles))
+    print("Mileage for current day".format(total, totalMiles))

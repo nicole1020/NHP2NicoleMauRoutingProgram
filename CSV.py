@@ -48,8 +48,36 @@ def loadPackageData(fileName, myHash):
             # insert it into the hash table
             myHash.insert(pID, p)
 
-#loaddistancedata(filename)
-#loadaddressdata(filename)
+
+def loadDistanceData(filename, myHash):
+    with open(filename) as distances:
+        distanceData = csv.reader(distances, delimiter=',')
+        for distance in distanceData:
+            dID = int(distance[0])
+            dAddress = distance[1]
+            dCity = distance[2]
+            dState = distance[3]
+            dZip = distance[4]
+
+        # distance object
+
+        d = Distances(dID, dAddress, dCity, dState, dZip)
+
+
+def loadaddressdata(filename, myHash):
+    with open(filename) as distances:
+        distanceData = csv.reader(distances, delimiter=',')
+        for distance in distanceData:
+            aID = int(distance[0])
+            aAddress = distance[1]
+            aCity = distance[2]
+            aState = distance[3]
+            aZip = distance[4]
+
+        # address object
+
+        a = Address(aID, aAddress, aCity, aState, aZip)
+
 #distanceinbetween(address1, address2)
 #mindistancefromaddress(address,package)
 #deliveringpackages(truck, starttime)
