@@ -1,5 +1,8 @@
 import csv
 
+from Address import Address
+from Truck import Truck
+
 
 class Package:
 
@@ -52,14 +55,14 @@ def loadDistanceData(filename):
             dCity = distance[2]
             dState = distance[3]
             dZip = distance[4]
-
+            dMiles = distance[5]
         # distance object
     # d = Distance(dID, dAddress, dCity, dState, dZip)
 
 
 def loadaddressdata(filename):
-    with open(filename) as address:
-        addressData = csv.reader(address, delimiter=',')
+    with open(filename) as addresses:
+        addressData = csv.reader(addresses, delimiter=',')
         for address in addressData:
             aID = int(address[0])
             aAddress = address[1]
@@ -68,13 +71,24 @@ def loadaddressdata(filename):
             aZip = address[4]
 
         # address object
-
         # a = Address(aID, aAddress, aCity, aState, aZip)
 
+
 # distanceinbetween(address1, address2) returns float
+def distanceinbetween(add1, add2, miles=None):
+    return miles
 
 
 # mindistancefromaddress(address,package) min = 1000, next address #null, next id = 0, returns next address next id, minn#distance
+def mindistancefromaddress(address, package, next_address=None):
+    minn = 1000
+    next_address  # null
+    next_id = 0
+    return next_address, next_id, minn
 
 
 # deliveringpackages(truck, starttime) return miles, calls min distancefromaddress
+
+def deliveringPackages(truck, starttime, miles=None):
+    return miles
+# calls mindistancefromaddress

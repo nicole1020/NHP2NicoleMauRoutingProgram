@@ -1,6 +1,8 @@
 
 
 class Truck:
+
+
     def __init__(self, capacity, speed, load, packages):
         self.capacity = capacity
         self.speed = speed
