@@ -9,16 +9,3 @@ class Distance:
         return " %s " % self.distance
 
 
-def loadDistanceData(filename):
-    with open(filename) as distances:
-        distanceData = csv.reader(distances, delimiter=',')
-        for distance in distanceData:
-            dID = int(distance[0])
-            dAddress = distance[1]
-            dCity = distance[2]
-            dState = distance[3]
-            dZip = distance[4]
-
-        # distance object
-       # d = Distance(dID, dAddress, dCity, dState, dZip)
-
