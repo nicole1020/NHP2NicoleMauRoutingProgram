@@ -28,13 +28,14 @@ getPackageData()
 
 
 # main - START
-def getTruckData():
-    print("Trucks:")
+
+def getPackageDataTime():
+    pass
 
 
-# if user query < load time, at hub, if query < delivery time en route else if = delivered
+def getPackageDataWithID():
+    pass
 
-getTruckData()
 
 if __name__ == '__main__':
     print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm, Dijkstra Algorithm")
@@ -43,15 +44,18 @@ if __name__ == '__main__':
     isExit = True
     while (isExit):
         print("\nOptions:")
-        print("1. Get Package Information")
-        print("2. Get Truck Information")
-        print("3. Exit the Program")
+        print("1. Print All Package Status and Total Mileage")
+        print("2. Get a Single Package Status with ID")
+        print("3. Get Package Status with a Time")
+        print("4. Exit the Program")
         option = input("Chose an option (1,2,or 3): ")
         if option == "1":
             getPackageData()
         elif option == "2":
-            getTruckData()
+            getPackageDataWithID()
         elif option == "3":
+            getPackageDataTime()
+        elif option == "4":
             isExit = False
         else:
             print("Invalid option, please try again!")
