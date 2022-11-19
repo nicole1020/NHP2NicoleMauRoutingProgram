@@ -1,7 +1,4 @@
-
-
 class Truck:
-
 
     def __init__(self, capacity, speed, load, packages):
         self.capacity = capacity
@@ -11,3 +8,4 @@ class Truck:
 
     def __str__(self):
         return " %s, %s, %s, %s" % (self.capacity, self.speed, self.load, self.packages)
+

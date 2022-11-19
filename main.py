@@ -14,7 +14,7 @@ from Dijkstra import Vertex, Graph, dijkstra_shortest_path, get_shortest_path, g
 myHash = ChainingHashTable()
 
 # Load packages to Hash Table
-loadPackageData('Packages.csv', myHash)
+loadPackageData('Package.csv', myHash)
 
 
 def getPackageData():
@@ -33,9 +33,6 @@ def getPackageDataTime():
     pass
 
 
-def getPackageDataWithID():
-    pass
-
 
 if __name__ == '__main__':
     print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm, Dijkstra Algorithm")
@@ -52,7 +49,11 @@ if __name__ == '__main__':
         if option == "1":
             getPackageData()
         elif option == "2":
-            getPackageDataWithID()
+            print("Please enter package ID for more information")
+            packageID = input(" ")
+            searchresult = myHash.search(int(packageID))
+            print(searchresult)
+
         elif option == "3":
             getPackageDataTime()
         elif option == "4":

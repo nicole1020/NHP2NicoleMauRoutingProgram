@@ -23,6 +23,7 @@ def greedyAlgorithmMinDistance(distance):
         distance3 += 1
         distance = distance - 5
 
+    #time1,2,3 convert to miles by 18 mph average use times
     # miles calculation
     totalMiles = distance1 + distance2 + distance3
 

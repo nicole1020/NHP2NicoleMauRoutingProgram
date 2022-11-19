@@ -36,7 +36,7 @@ def loadPackageData(fileName, myHash):
             pDt = package[5]
             pWeight = package[6]
             pNotes = package[7]
-            pStatus = "Delivered"
+            pStatus = "Unknown"
 
             # package object
             p = Package(pID, pAddress, pCity, pState, pZip, pDt, pWeight, pNotes, pStatus)
