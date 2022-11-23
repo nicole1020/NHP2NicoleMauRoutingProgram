@@ -1,44 +1,12 @@
 # Calculating nearest neighbor for distances for next delivery address and total mileage for the day
-# https://machinelearningmastery.com/tutorial-to-implement-k-nearest-neighbors-in-python-from-scratch/
+#Traveling salesman problem nearest neighbor Python
+
 import csv
 from math import sqrt
 
 
-# calculate the Euclidean distance between two vectors
-def euclidean_distance(row1, row2):
-    distance1 = 0.0
-    for i in range(len(row1) - 1):
-        distance1 += (row1[i] - row2[i]) ** 2
-    return sqrt(distance1)
 
-
-# Locate the most similar neighbors
-def get_neighbors(train, test_row, num_neighbors):
-    distances = list()
-    for train_row in train:
-        dist = euclidean_distance(test_row, train_row)
-        distances.append((train_row, dist))
-    distances.sort(key=lambda tup: tup[1])
-    neighbors = list()
-    for i in range(num_neighbors):
-        neighbors.append(distances[i][0])
-    return neighbors
-
-
-# Test distance function
-with open('distance.csv', newline='') as d:
-    reader = csv.reader(d)
-    datalist = list(reader)
-    print(datalist)
-
-neighbors = get_neighbors(datalist, datalist[0], 26)
-for neighbor in neighbors:
-    print(neighbor)
-
-
-
-
-def kNearestNeighbor(distance):
+def nearestNeighbor(distance):
     total = distance
     distance1 = 0
     distance2 = 0
