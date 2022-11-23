@@ -1,8 +1,5 @@
 import csv
 
-from Address import Address
-from Truck import Truck
-
 
 class Package:
 

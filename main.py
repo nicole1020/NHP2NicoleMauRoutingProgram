@@ -7,7 +7,7 @@
 import datetime
 from Hash import ChainingHashTable
 from Package import loadPackageData
-from Greedy import greedyAlgorithmMinDistance
+from KNN import greedyAlgorithmMinDistance
 from Dijkstra import Vertex, Graph, dijkstra_shortest_path, get_shortest_path, get_shortest_path_city
 
 # Hash table instance
