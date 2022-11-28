@@ -1,7 +1,10 @@
 # Calculating nearest neighbor for distances for next delivery address and total mileage for the day
-#Traveling salesman problem nearest neighbor Python
+# Traveling salesman problem nearest neighbor Python
+# https://www.kaggle.com/code/samuelcortinhas/k-nearest-neighbours-knn-from-scratch
 
 import csv
+import itertools
+import random
 from math import sqrt
 
 with open('Distance.csv', newline='') as d:
@@ -15,6 +18,84 @@ with open('Address.csv', newline='') as a:
     addressList = list(reader)
 
 print(addressList)
+
+
+def allrouts_tsp(addresses):
+    "Generate all possible tours of the cities and choose the shortest tour."
+    return shortest_rout_tour(allrouts(addresses))
+
+
+def shortest_rout_tour(routtour, rout_length=None):
+    """Choose the rout with the minimum rout length."""
+    return min(routtour, key=rout_length)
+
+
+allrouts = itertools.permutations
+
+list(allrouts(addressList))
+
+
+def rout_length(rout):
+    "The total of distances between each pair of consecutive cities in the tour."
+    return sum(distance(rout[i], rout[i - 1])
+               for i in range(len(rout)))
+
+
+# Addresses are represented as Points, which are represented as complex numbers
+Point = complex
+Address = Point
+
+
+def X(point):
+    """The x coordinate of a point."""
+    return point.real
+
+
+def Y(point):
+    """The y coordinate of a point."""
+    return point.imag
+
+
+def distance(A, B):
+    """The distance between two points."""
+    return abs(A - B)
+
+
+{Address(random.randrange(1000), random.randrange(1000)) for c in range(6)}
+
+
+def Addresses(n, width=900, height=600, seed=40):
+    "Make a set of n cities, each with random coordinates within a (width x height) rectangle."
+    random.seed(seed * n)
+    return frozenset(Address(random.randrange(width), random.randrange(height))
+                     for c in range(n))
+
+
+rout_length(allrouts(Addresses(8)))
+
+
+Addresses(5)
+
+[Addresses(5) for i in range(3)]
+
+[Addresses(5, seed=i) for i in range(3)]
+
+allrouts_tsp(Addresses(8))
+
+def plot_rout(rout):
+    """Plot the cities as circles and the tour as lines between them."""
+    plot_lines(list(rout) + [rout[0]])
+
+
+def plot_lines(points, style='bo-', plt=None):
+    """Plot lines to connect a series of points."""
+    plt.plot(map(X, points), map(Y, points), style)
+    plt.axis('scaled');
+    plt.axis('off')
+
+
+plot_rout(allrouts_tsp(Addresses(8)))
+
 
 def nearestNeighbor(distance):
     total = distance
