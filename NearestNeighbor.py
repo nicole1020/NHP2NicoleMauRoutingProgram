@@ -9,11 +9,6 @@ from math import sqrt
 
 
 
-with open('Address.csv', newline='') as a:
-    reader = csv.reader(a)
-    addressList = list(reader)
-
-print(addressList)
 
 
 def allrouts_tsp(addresses):
