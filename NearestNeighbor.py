@@ -7,11 +7,7 @@ import itertools
 import random
 from math import sqrt
 
-with open('Distance.csv', newline='') as d:
-    reader = csv.reader(d)
-    distanceList = list(reader)
 
-print(distanceList)
 
 with open('Address.csv', newline='') as a:
     reader = csv.reader(a)
@@ -25,7 +21,7 @@ def allrouts_tsp(addresses):
     return shortest_rout_tour(allrouts(addresses))
 
 
-def shortest_rout_tour(routtour, rout_length=None):
+def shortest_rout_tour(routtour):
     """Choose the rout with the minimum rout length."""
     return min(routtour, key=rout_length)
 

@@ -43,19 +43,6 @@ def loadPackageData(fileName, myHash):
             myHash.insert(pID, p)
 
 
-def loadDistanceData(filename):
-    with open(filename) as distances:
-        distanceData = csv.reader(distances, delimiter=',')
-        for distance in distanceData:
-            dID = int(distance[0])
-            dAddress = distance[1]
-            dCity = distance[2]
-            dState = distance[3]
-            dZip = distance[4]
-            dMiles = distance[5]
-        # distance object
-    # d = Distance(dID, dAddress, dCity, dState, dZip)
-
 
 def loadaddressdata(filename):
     with open(filename) as addresses:
