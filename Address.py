@@ -9,11 +9,11 @@ class Address:
         return " %s " % self.address
 
 
-def loadAddressData(addressData):
+def loadAddressData():
     with open('Address.csv', newline='') as ad:
         reader = csv.reader(ad)
         addressData = list(reader)
         print(addressData)
 
 
-print(loadAddressData(addressData=0))
+print(loadAddressData())
