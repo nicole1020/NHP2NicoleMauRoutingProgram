@@ -9,13 +9,13 @@ class Distance:
         return " %s " % self.distance
 
 
-def loadDistanceData():
-    with open('Distance.csv', newline='') as d:
-        reader = csv.reader(d)
-        distanceData = list(reader)
-        print(distanceData)
+distanceData = []
 
+with open('Distance.csv') as csvfile:
+    csvReader = csv.reader(csvfile)
+    for row in csvReader:
+        distanceData.append(row[0])
 
-print(loadDistanceData())
+print(distanceData)
 
 # 410 S State St., Salt Lake City, UT 84111
