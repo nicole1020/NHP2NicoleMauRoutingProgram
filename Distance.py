@@ -17,5 +17,4 @@ with open('Distance.csv') as csvfile:
         distanceData.append(row[0])
 
 print(distanceData)
-
 # 410 S State St., Salt Lake City, UT 84111

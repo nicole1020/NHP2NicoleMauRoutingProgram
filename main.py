@@ -4,11 +4,9 @@
 # Ref: zyBooks: 3.3.1: MakeChange greedy algorithm.
 # Ref: zyBooks: zyDE 6.12.1: Dijkstra's shortest path example.
 # Ref: Graph Data Structure 4.
-import datetime
+
 from Hash import ChainingHashTable
 from Package import loadPackageData
-from NearestNeighbor import greedyAlgorithmMinDistance
-from Dijkstra import Vertex, Graph, dijkstra_shortest_path, get_shortest_path, get_shortest_path_city
 
 # Hash table instance
 myHash = ChainingHashTable()
@@ -21,7 +19,7 @@ def getPackageData():
     print("Packages from Hashtable:")
     # Fetch data from Hash Table
     for i in range(len(myHash.table) + 1):
-        print("Packages: {}".format(myHash.search(i + 1)))  # 1 to 40 is sent to myHash.search()
+        print("PackageID: {}".format(myHash.search(i + 1)))  # 1 to 40 is sent to myHash.search()
 
 
 # add up total mileage here with KNN alg
