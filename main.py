@@ -23,7 +23,8 @@ def getPackageData():
     for i in range(len(myHash.table) + 1):
         print("Packages: {}".format(myHash.search(i + 1)))  # 1 to 40 is sent to myHash.search()
 
-#add up total mileage here with KNN alg
+
+# add up total mileage here with KNN alg
 getPackageData()
 
 
@@ -31,7 +32,6 @@ getPackageData()
 
 def getPackageDataTime():
     pass
-
 
 
 if __name__ == '__main__':

@@ -1,5 +1,4 @@
 import csv
-import pandas as pd
 
 
 class Distance:
@@ -15,9 +14,6 @@ def loadDistanceData():
         reader = csv.reader(d)
         distanceData = list(reader)
         print(distanceData)
-
-    dd = pd.DataFrame(d)
-    print(dd)
 
 
 print(loadDistanceData())

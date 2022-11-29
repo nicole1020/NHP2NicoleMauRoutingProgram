@@ -5,25 +5,21 @@
 import csv
 import itertools
 import random
-from math import sqrt
+import Address
+import Distance
 
 
+def all_routs_tsp(addresses):
+    """Generate all possible tours of the cities and choose the shortest tour."""
+    return shortest_rout_tour(all_routs(addresses))
 
 
-
-def allrouts_tsp(addresses):
-    "Generate all possible tours of the cities and choose the shortest tour."
-    return shortest_rout_tour(allrouts(addresses))
-
-
-def shortest_rout_tour(routtour):
+def shortest_rout_tour(rout_tour):
     """Choose the rout with the minimum rout length."""
-    return min(routtour, key=rout_length)
+    return min(rout_tour, key=rout_length)
 
 
-allrouts = itertools.permutations
-
-list(allrouts(addressList))
+all_routs = itertools.permutations
 
 
 def rout_length(rout):
@@ -62,8 +58,7 @@ def Addresses(n, width=900, height=600, seed=40):
                      for c in range(n))
 
 
-rout_length(allrouts(Addresses(8)))
-
+rout_length(all_routs(Addresses(8)))
 
 Addresses(5)
 
@@ -71,7 +66,8 @@ Addresses(5)
 
 [Addresses(5, seed=i) for i in range(3)]
 
-allrouts_tsp(Addresses(8))
+all_routs_tsp(Addresses(8))
+
 
 def plot_rout(rout):
     """Plot the cities as circles and the tour as lines between them."""
@@ -85,7 +81,7 @@ def plot_lines(points, style='bo-', plt=None):
     plt.axis('off')
 
 
-plot_rout(allrouts_tsp(Addresses(8)))
+plot_rout(all_routs_tsp(Addresses(8)))
 
 
 def nearestNeighbor(distance):

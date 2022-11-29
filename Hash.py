@@ -8,20 +8,20 @@ class ChainingHashTable:
             self.table.append([])
 
     # Inserts a new item into the hash table.
-    def insert(self, key, item): #  does both insert and update
+    def insert(self, PackageID, Package):  # does both insert and update
         # get the bucket list where this item will go.
-        bucket = hash(key) % len(self.table)
+        bucket = hash(PackageID) % len(self.table)
         bucket_list = self.table[bucket]
 
         # update key if it is already in the bucket
         for kv in bucket_list:
-          #print (key_value)
-          if kv[0] == key:
-            kv[1] = item
-            return True
+            # print (key_value)
+            if kv[0] == PackageID:
+                kv[1] = Package
+                return True
 
         # if not, insert the item to the end of the bucket list.
-        key_value = [key, item]
+        key_value = [PackageID, Package]
         bucket_list.append(key_value)
         return True
 
@@ -31,13 +31,13 @@ class ChainingHashTable:
         # get the bucket list where this key would be.
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
-        #print(bucket_list)
+        # print(bucket_list)
 
         # search for the key in the bucket list
         for kv in bucket_list:
-          #print (key_value)
-          if kv[0] == key:
-            return kv[1] # value
+            # print (key_value)
+            if kv[0] == key:
+                return kv[1]  # value
         return None
 
     # Removes an item with matching key from the hash table.
@@ -48,6 +48,6 @@ class ChainingHashTable:
 
         # remove the item from the bucket list if it is present.
         for kv in bucket_list:
-          #print (key_value)
-          if kv[0] == key:
-              bucket_list.remove([kv[0],kv[1]])
+            # print (key_value)
+            if kv[0] == key:
+                bucket_list.remove([kv[0], kv[1]])
