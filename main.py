@@ -23,7 +23,7 @@ def getPackageData():
 
 
 # add up total mileage here with KNN alg
-getPackageData()
+#getPackageData()
 
 
 # main - START

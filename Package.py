@@ -51,7 +51,7 @@ def loadAddressData():
         print(addressData)
 
 
-print(loadAddressData())
+#print(loadAddressData())
 
 # distance_in_between(address1, address2) returns float
 def distance_in_between(add1, add2, miles=None):
