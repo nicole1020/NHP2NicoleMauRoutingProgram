@@ -22,3 +22,4 @@ row_number = 3
 col_number = 2
 value = distanceData[row_number - 1][col_number - 1]
 print('Value in cell at 3rd row and 2nd column : ', value)
+print(distanceData[2][1])
