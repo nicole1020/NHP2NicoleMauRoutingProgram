@@ -10,7 +10,7 @@ class Address:
 
 
 def loadAddressData():
-    with open('Address.csv', newline='') as ad:
+    with open('Address.csv', 'r') as ad:
         reader = csv.reader(ad)
         addressData = list(reader)
         print(addressData)
