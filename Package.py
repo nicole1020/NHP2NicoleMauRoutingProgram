@@ -44,35 +44,30 @@ def loadPackageData(fileName, myHash):
 
 
 
-def loadaddressdata(filename):
-    with open(filename) as addresses:
-        addressData = csv.reader(addresses, delimiter=',')
-        for address in addressData:
-            aID = int(address[0])
-            aAddress = address[1]
-            aCity = address[2]
-            aState = address[3]
-            aZip = address[4]
-
-        # address object
-        # a = Address(aID, aAddress, aCity, aState, aZip)
+def loadAddressData():
+    with open('Address.csv', 'r') as ad:
+        reader = csv.reader(ad)
+        addressData = list(reader)
+        print(addressData)
 
 
-# distanceinbetween(address1, address2) returns float
-def distanceinbetween(add1, add2, miles=None):
+print(loadAddressData())
+
+# distance_in_between(address1, address2) returns float
+def distance_in_between(add1, add2, miles=None):
     return miles
 
 
 # mindistancefromaddress(address,package) min = 1000, next address #null, next id = 0, returns next address next id, minn#distance
-def mindistancefromaddress(address, package, next_address=None):
+def min_distance_from_address(address, package, next_address=None):
     minn = 1000
     next_address  # null
     next_id = 0
     return next_address, next_id, minn
 
 
-# deliveringpackages(truck, starttime) return miles, calls min distancefromaddress
+# delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
-def deliveringPackages(truck, starttime, miles=None):
+def delivering_packages(truck, starttime, miles=None):
     return miles
-# calls mindistancefromaddress
+# calls min_distance_from_address
