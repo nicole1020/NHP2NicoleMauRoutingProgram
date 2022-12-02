@@ -44,30 +44,3 @@ def loadPackageData(fileName, packagehashtable):
 
 
 
-def loadAddressData():
-    with open('Address.csv', 'r') as ad:
-        reader = csv.reader(ad)
-        addressData = list(reader)
-        print(addressData)
-
-
-#print(loadAddressData())
-
-# distance_in_between(address1, address2) returns float
-def distance_in_between(add1, add2, miles=None):
-    return miles
-
-
-# mindistancefromaddress(address,package) min = 1000, next address #null, next id = 0, returns next address next id, minn#distance
-def min_distance_from_address(address, package, next_address=None):
-    minn = 1000
-    next_address  # null
-    next_id = 0
-    return next_address, next_id, minn
-
-
-# delivering_packages(truck, starttime) return miles, calls min_distance_from_address
-
-def delivering_packages(truck, starttime, miles=None):
-    return miles
-# calls min_distance_from_address
