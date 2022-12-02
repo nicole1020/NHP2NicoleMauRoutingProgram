@@ -49,6 +49,33 @@ truck3 = Truck
 
 # loading trucks algorithm
 
+
+def distance_in_between(add1, add2):
+    distance = 0.0
+    for x1, x2 in zip(add1, add2):
+        difference = x2 - x1
+        absolute_difference = abs(difference)
+        distance += absolute_difference
+
+    return distance
+
+
+# mindistancefromaddress(address,package) min = 1000, next address #null, next id = 0, returns next address next id,
+# minn#distance
+def min_distance_from_address(address, package, next_address=None):
+    minn = 1000  # distance
+    next_address  # null
+    next_id = 0
+    return next_address, next_id, minn
+
+
+# delivering_packages(truck, starttime) return miles, calls min_distance_from_address
+
+def delivering_packages(truck, starttime, miles=None):
+    return miles
+
+
+# calls min_distance_from_address
 def getPackageDataTime():
     pass
 
