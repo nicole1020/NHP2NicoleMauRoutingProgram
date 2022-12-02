@@ -10,7 +10,7 @@ import Distance
 
 
 # https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
-def distance_in_between(add1, add2):
+def distanceinbetween(add1, add2):
     distance = 0.0
     for x1, x2 in zip(add1, add2):
         difference = x2 - x1
