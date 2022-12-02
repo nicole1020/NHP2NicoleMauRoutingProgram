@@ -9,3 +9,10 @@ class Truck:
     def __str__(self):
         return " %s, %s, %s, %s" % (self.capacity, self.speed, self.load, self.packages)
 
+
+def loadingpackages(truckid, capacity, miles, packageid):
+    return packageid
+
+
+def deliveringpackages(truck, starttime, miles=None):
+    return miles
