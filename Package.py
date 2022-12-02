@@ -20,7 +20,7 @@ class Package:
             self.id, self.address, self.city, self.state, self.zip, self.dt, self.weight, self.notes, self.status)
 
 
-def loadPackageData(fileName, myHash):
+def loadPackageData(fileName, packagehashtable):
     with open(fileName) as packages:
         packageData = csv.reader(packages, delimiter=',')
         next(packageData)  # skip header
@@ -40,7 +40,7 @@ def loadPackageData(fileName, myHash):
             # print(p)
 
             # insert it into the hash table
-            myHash.insert(pID, p)
+            packagehashtable.insert(pID, p)
 
 
 

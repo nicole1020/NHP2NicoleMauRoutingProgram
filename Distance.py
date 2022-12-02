@@ -31,7 +31,7 @@ print(distanceData[2][1])
 # distanceData.append(4, 4)
 
 
-def loaddistancedata():
+def loaddistancedata(fileName, distancedatalist):
     with open('Distance.csv', 'r') as read_obj:
         # pass the file object to reader() to get the reader object
         csv_reader = reader(read_obj)
