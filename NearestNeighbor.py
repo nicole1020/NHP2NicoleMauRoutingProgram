@@ -9,6 +9,19 @@ import Address
 import Distance
 
 
+# https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
+def distance_in_between(add1, add2):
+    distance = 0.0
+    for x1, x2 in zip(add1, add2):
+        difference = x2 - x1
+        absolute_difference = abs(difference)
+        distance += absolute_difference
+
+    return distance
+
+
+# below is NN above is greedy
+
 def all_routs_tsp(addresses):
     """Generate all possible tours of the cities and choose the shortest tour."""
     return shortest_rout_tour(all_routs(addresses))
