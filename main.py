@@ -8,6 +8,7 @@ from Distance import loaddistancedata
 
 from Hash import ChainingHashTable
 from Package import loadPackageData
+from Truck import Truck
 
 # Hash table instance
 packagehashtable = ChainingHashTable()
@@ -29,6 +30,7 @@ distancedatalist = []
 
 loaddistancedata('Distance.csv', distancedatalist)
 
+
 def getPackageData():
     print("Packages from Hashtable:")
     # Fetch data from Hash Table
@@ -37,11 +39,15 @@ def getPackageData():
 
 
 # add up total mileage here with KNN alg
-#getPackageData()
+# getPackageData()
+
+# instantiated truck objects 1,2, and 3
+truck1 = Truck
+truck2 = Truck
+truck3 = Truck
 
 
-
-
+# loading trucks algorithm
 
 def getPackageDataTime():
     pass
