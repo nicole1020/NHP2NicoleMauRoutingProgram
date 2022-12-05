@@ -10,6 +10,7 @@ import Distance
 
 
 
+
 # below is NN above is greedy
 
 def all_routs_tsp(addresses):

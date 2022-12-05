@@ -56,14 +56,17 @@ truck3 = Truck
 # https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
 def distanceinbetween(add1, add2):
     distance = 0.0
-    add1 = addressdatalist.index(add1)
-    add2 = addressdatalist.index(add2)
-    for x1, x2 in distancedatalist[add1][add2]:
+    address1 = addressdatalist.index(add1)
+    address2 = addressdatalist.index(add2)
+    for x1, x2 in distancedatalist[address1][address2]:
         difference = x2 - x1
         absolute_difference = abs(difference)
         distance += absolute_difference
-
+        print(float, "testhere")
     return float  # distance
+
+
+print(distanceinbetween(2, 1))
 
 
 # C.2) Function to find min distance/address:
