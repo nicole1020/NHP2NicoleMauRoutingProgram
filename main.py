@@ -51,6 +51,8 @@ truck3 = Truck
 # loading trucks algorithm
 
 
+# 9-Return distanceData[addressData.index(address1)][addressData.index(address2)]
+#  i.e. distances between addresses can be accessed via distanceData[i][j];
 # https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
 def distanceinbetween(add1, add2):
     distance = 0.0
@@ -64,8 +66,11 @@ def distanceinbetween(add1, add2):
     return float  # distance
 
 
-# 9-Return distanceData[addressData.index(address1)][addressData.index(address2)]
-#  i.e. distances between addresses can be accessed via distanceData[i][j];
+# C.2) Function to find min distance/address:
+# 10-Define minDistanceFrom(fromAddress, truckPackages)
+# 11-Return min distance address to fromAddress
+#   i.e. call distanceBetween(address1, address2) in a loop for all the addresses in the Truck
+
 # mindistancefromaddress(address,package) min = 1000, next address #null, next id = 0, returns next address next id,
 # minn#distance
 def min_distance_from_address(address, package, next_address=None):
