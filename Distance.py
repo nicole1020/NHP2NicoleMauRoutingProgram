@@ -16,14 +16,14 @@ class Distance:
 # https://www.geeksforgeeks.org/print-lists-in-python-4-different-ways/
 # distancedata list resources
 # distanceData.append(4, 4)
-def loaddistancedata(fileName, distancedatalist):
+def loaddistancedata(fileName, distancedatalist, distances=None):
     with open('Distance.csv', 'r') as read_obj:
         # pass the file object to reader() to get the reader object
         csv_reader = reader(read_obj)
         # Pass reader object to list() to get a list of lists
         distanceData = list(csv_reader)
         print(*distanceData, sep="\n")
-
+        return distances
 
 # https://thispointer.com/python-read-csv-into-a-list-of-lists-or-tuples-or-dictionaries-import-csv-to-list/
 # https://www.guru99.com/python-2d-array.html

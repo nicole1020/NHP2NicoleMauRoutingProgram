@@ -42,5 +42,6 @@ def loadPackageData(fileName, packagehashtable):
             # insert it into the hash table
             packagehashtable.insert(pID, p)
 
+    return packages
 
 
