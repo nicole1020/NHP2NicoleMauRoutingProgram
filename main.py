@@ -41,7 +41,7 @@ def getPackageData():
 # add up total mileage here with KNN alg
 # getPackageData()
 
-#edit truck 1 as needed
+# edit truck 1 as needed
 # instantiated truck objects 1,2, and 3
 truck1 = Truck(16, 18, loadingpackages(1, 16, 40, ""), deliveringpackages(1, 800, 40))
 truck2 = Truck
@@ -51,6 +51,21 @@ truck3 = Truck
 # loading trucks algorithm
 
 
+# https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
+def distanceinbetween(add1, add2):
+    distance = 0.0
+    add1 = addressdatalist.index(add1)
+    add2 = addressdatalist.index(add2)
+    for x1, x2 in distancedatalist[add1][add2]:
+        difference = x2 - x1
+        absolute_difference = abs(difference)
+        distance += absolute_difference
+
+    return float  # distance
+
+
+# 9-Return distanceData[addressData.index(address1)][addressData.index(address2)]
+#  i.e. distances between addresses can be accessed via distanceData[i][j];
 # mindistancefromaddress(address,package) min = 1000, next address #null, next id = 0, returns next address next id,
 # minn#distance
 def min_distance_from_address(address, package, next_address=None):
