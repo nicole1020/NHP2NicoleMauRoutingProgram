@@ -90,6 +90,7 @@ def delivering_packages(truck, starttime, miles=None):
 
 
 # calls min_distance_from_address
+# user input into CLI will dictacte status of package based on time inputted
 def getPackageDataTime():
     pass
 
