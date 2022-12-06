@@ -1,4 +1,5 @@
 # C950 Data Structures and Algorithms II - NHP2 - Routing Program
+
 from Address import loadaddressdata
 from Distance import loaddistancedata
 # Ref: zyBooks: Figure 7.8.2: Hash table using chaining.
@@ -56,9 +57,7 @@ truck3 = Truck
 # https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
 def distanceinbetween(add1, add2):
     distance = 0.0
-    address1 = addressdatalist.index(add1)
-    address2 = addressdatalist.index(add2)
-    for x1, x2 in distancedatalist[address1][address2]:
+    for x1, x2 in distancedatalist[add1][add2]:
         difference = x2 - x1
         absolute_difference = abs(difference)
         distance += absolute_difference
@@ -66,7 +65,7 @@ def distanceinbetween(add1, add2):
     return float  # distance
 
 
-print(distanceinbetween(2, 1))
+print(loaddistancedata)
 
 
 # C.2) Function to find min distance/address:
@@ -90,7 +89,7 @@ def delivering_packages(truck, starttime, miles=None):
 
 
 # calls min_distance_from_address
-# user input into CLI will dictacte status of package based on time inputted
+# user input into CLI will dictate status of package based on time inputted
 def getPackageDataTime():
     pass
 
