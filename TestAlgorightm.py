@@ -33,7 +33,7 @@ def str_column_to_int(dataset, column):
     lookup = dict()
     for i, value in enumerate(unique):
         lookup[value] = i
-    print('[%s] => %d' % (value, i))
+  #  print('[%s] => %d' % (value, i))
     for row in dataset:
         row[column] = lookup[row[column]]
     return lookup
@@ -69,14 +69,14 @@ def euclidean_distance(row1, row2):
 # Locate the most similar neighbors
 def get_neighbors(train, test_row, num_neighbors):
     global train_row, dist
-    distances = list()
+    distancestest = list()
     for train_row in train:
         dist = euclidean_distance(test_row, train_row)
-    distances.append((train_row, dist))
-    distances.sort(key=lambda tup: tup[1])
+    distancestest.append((train_row, dist))
+    distancestest.sort(key=lambda tup: tup[1])
     neighbors = list()
     for i in range(num_neighbors):
-        neighbors.append(distances[i][0])
+        neighbors.append(distancestest[i][0])
     return neighbors
 
 

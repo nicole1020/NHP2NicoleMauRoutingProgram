@@ -1,7 +1,5 @@
 # C950 Data Structures and Algorithms II - NHP2 - Routing Program
 
-from Address import loadaddressdata
-from Distance import loaddistancedata
 # Ref: zyBooks: Figure 7.8.2: Hash table using chaining.
 # Ref: zyBooks: 3.3.1: MakeChange greedy algorithm.
 # Ref: zyBooks: zyDE 6.12.1: Dijkstra's shortest path example.
@@ -44,12 +42,9 @@ def getPackageData():
 
 # edit truck 1 as needed
 # instantiated truck objects 1,2, and 3
-truck1 = Truck(16, 18, loadingpackages(1, 16, 40, ""), deliveringpackages(1, 800, 40))
+truck1 = Truck
 truck2 = Truck
 truck3 = Truck
-
-
-# loading trucks algorithm
 
 
 # 9-Return distanceData[addressData.index(address1)][addressData.index(address2)]
@@ -57,7 +52,9 @@ truck3 = Truck
 # https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
 def distanceinbetween(add1, add2):
     distance = 0.0
-    for x1, x2 in distancedatalist[add1][add2]:
+    first= addressdatalist(add1)
+    second = addressdatalist(add2)
+    for x1, x2 in distancedatalist[first][second]:
         difference = x2 - x1
         absolute_difference = abs(difference)
         distance += absolute_difference
@@ -65,7 +62,6 @@ def distanceinbetween(add1, add2):
     return float  # distance
 
 
-print(loaddistancedata)
 
 # https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
 # C.2) Function to find min distance/address:
@@ -73,18 +69,21 @@ print(loaddistancedata)
 # 11-Return min distance address to fromAddress
 #   i.e. call distanceBetween(address1, address2) in a loop for all the addresses in the Truck
 
-# mindistancefromaddress(address,package) min = 1000, next address #null, next id = 0, returns next address next id,
-# minn#distance
+# mindistancefromaddress(address,package(list)) min = 1000, next address #null, next id = 0, returns next address next id,
+# minn#distance NN here. call NN in delivering packages
 def min_distance_from_address(address, package, next_address=None):
     minn = 1000  # distance
     next_address  # null
     next_id = 0
     return next_address, next_id, minn
 
+# loading trucks algorithm
+# some packages must be on the same truck, first 2 trucks are for standard deliveries.
+# some must go on truck 3 if special instructions given.
 
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
-def delivering_packages(truck, starttime, miles=None):
+def delivering_packages(truck, starttime, min_distance_from_address, miles=None):
     return miles
 
 
