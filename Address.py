@@ -14,11 +14,6 @@ class Address:
 # https://www.jquery-az.com/7-examples-python-open-read-write-files-io-file-operations/
 
 
-addressData = [
-    '4001 South 700 East',
-    '1060 dalton ave s'
-]
 
-print(addressData[1])
 # loadAddressData()
 # addressData.append(4, 4)

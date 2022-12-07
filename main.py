@@ -19,15 +19,46 @@ loadPackageData('Package.csv', packagehashtable)
 # https://www.pythonpool.com/python-2d-list/
 # address list rows (x)
 
-addressdatalist = []
+addressData = [
+    '4001 South 700 East',
+    '1060 dalton ave s',
+    '1330 2100 S',
+    '1488 4800 S',
+    '177 W Price Ave',
+    '195 W Oakland Ave',
+    '2010 W 500 S',
+    '2300 Parkway Blvd',
+    '233 Canyon Rd',
+    '2530 S 500 E',
+    '2600 Taylorsville Blvd',
+    '2835 Main St',
+    '300 State St',
+    '3060 Lester St',
+    '3148 S 1100 W',
+    '3365 S 900 W',
+    '3575 W Valley Central Sta bus Loop',
+    '3595 Main St',
+    '380 W 2880 S',
+    '410 S State St',
+    '4300 S 1300 E',
+    '4580 S 2300 E',
+    '5025 State St',
+    '5100 South 2700 West',
+    '5383 South 900 East #104',
+    '600 E 900 South',
+    '6351 South 900 East',
+]
 
-loadaddressdata('Address.csv', addressdatalist)
+print(addressData[0])
+distanceData = [
+    [0.0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+    [7.2, 0.0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
 
-# distances list column (y)
 
-distancedatalist = []
+]
+print(float(distanceData[2][0]))
 
-loaddistancedata('Distance.csv', distancedatalist)
+
 
 
 def getPackageData():
@@ -51,15 +82,14 @@ truck3 = Truck
 #  i.e. distances between addresses can be accessed via distanceData[i][j];
 # https://www.geeksforgeeks.org/sum-manhattan-distances-pairs-points/   logic for complexity
 def distanceinbetween(add1, add2):
-    distance = 0.0
-    first= addressdatalist(add1)
-    second = addressdatalist(add2)
-    for x1, x2 in distancedatalist[first][second]:
-        difference = x2 - x1
-        absolute_difference = abs(difference)
-        distance += absolute_difference
-        print(float, "testhere")
-    return float  # distance
+        vReturn = 0
+        h = addressData.index(add1)
+        j = addressData.index(add2)
+        if distanceData[h][j] == '':
+            vReturn = distanceData[j][h]
+        else:
+            vReturn = distanceData[h][j]
+        return float(vReturn)
 
 
 
