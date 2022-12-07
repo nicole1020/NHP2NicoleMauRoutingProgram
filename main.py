@@ -67,7 +67,7 @@ def distanceinbetween(add1, add2):
 
 print(loaddistancedata)
 
-
+# https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
 # C.2) Function to find min distance/address:
 # 10-Define minDistanceFrom(fromAddress, truckPackages)
 # 11-Return min distance address to fromAddress
