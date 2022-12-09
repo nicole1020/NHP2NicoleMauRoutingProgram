@@ -1,9 +1,5 @@
 import csv
 
-from Package import Package
-from main import packagehashtable
-
-
 class Truck:
 
     def __init__(self, capacity, speed, load, packages):

@@ -134,7 +134,7 @@ def distanceinbetween(add1, add2):
 
 
 print((distanceinbetween('4001 South 700 East',
-                        '1060 dalton ave s', )))
+                        '1060 Dalton Ave S', )))
 
 
 # https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
