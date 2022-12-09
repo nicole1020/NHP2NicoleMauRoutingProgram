@@ -16,6 +16,9 @@ class Truck:
         return " %s, %s, %s, %s" % (self.capacity, self.speed, self.load, self.packages)
 
 
+
+
+
 # create truck object with packages array need to figure this out later
 def loadingpackages(truckid, capacity, miles, packageid, fileName):
 

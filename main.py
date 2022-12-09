@@ -115,10 +115,9 @@ def getPackageData():
 
 # edit truck 1 as needed
 # instantiated truck objects 1,2, and 3
-truck1 = Truck
+truck1 = Truck(16, 18, 16, [1,2,23,3,21,24,25,22,23,32,11])
 truck2 = Truck
 truck3 = Truck
-
 
 # 9-Return distanceData[addressData.index(address1)][addressData.index(address2)]
 #  i.e. distances between addresses can be accessed via distanceData[i][j];
@@ -147,10 +146,16 @@ print((distanceinbetween('4001 South 700 East',
 # mindistancefromaddress(address,package(list)) min = 1000, next address #null, next id = 0, returns next address next id,
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
+# deliver next package to the closest address.
 def min_distance_from_address(address, package, next_address=None):
     minn = 1000  # distance
     next_address  # null
     next_id = 0
+    getPackageData()
+
+
+
+
     return next_address, next_id, minn
 
 
