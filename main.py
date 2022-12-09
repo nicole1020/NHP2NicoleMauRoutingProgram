@@ -21,7 +21,7 @@ loadPackageData('Package.csv', packagehashtable)
 
 addressData = [
     '4001 South 700 East',
-    '1060 dalton ave s',
+    '1060 Dalton Ave S',
     '1330 2100 S',
     '1488 4800 S',
     '177 W Price Ave',
@@ -100,7 +100,7 @@ distanceData = [
     [3.6, 13.0, 7.4, 10.1, 5.5, 7.2, 14.2, 10.7, 14.1, 6.0, 6.8, 6.4, 14.1, 10.5, 8.8, 8.4, 13.6, 5.2, 6.9, 13.1, 4.1,
      4.7, 3.1, 7.8, 1.3, 8.3, 0.0],
 ]
-print(float(distanceData[2][0]))
+print(distanceData[2][0])
 
 
 def getPackageData():
@@ -134,8 +134,8 @@ def distanceinbetween(add1, add2):
     return float(vReturn)
 
 
-print(distanceinbetween('4001 South 700 East',
-                        '1060 dalton ave s', ))
+print((distanceinbetween('4001 South 700 East',
+                        '1060 dalton ave s', )))
 
 
 # https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
@@ -145,6 +145,7 @@ print(distanceinbetween('4001 South 700 East',
 #   i.e. call distanceBetween(address1, address2) in a loop for all the addresses in the Truck
 
 # mindistancefromaddress(address,package(list)) min = 1000, next address #null, next id = 0, returns next address next id,
+# https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 def min_distance_from_address(address, package, next_address=None):
     minn = 1000  # distance

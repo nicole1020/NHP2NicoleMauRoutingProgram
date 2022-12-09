@@ -1,3 +1,9 @@
+import csv
+
+from Package import Package
+from main import packagehashtable
+
+
 class Truck:
 
     def __init__(self, capacity, speed, load, packages):
@@ -10,8 +16,10 @@ class Truck:
         return " %s, %s, %s, %s" % (self.capacity, self.speed, self.load, self.packages)
 
 
-# create truck object with packages array
-def loadingpackages(truckid, capacity, miles, packageid):
+# create truck object with packages array need to figure this out later
+def loadingpackages(truckid, capacity, miles, packageid, fileName):
+
+
     return packageid
 
 
