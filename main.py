@@ -142,9 +142,9 @@ print((distanceinbetween('4001 South 700 East',
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
-def min_distance_from_address(address, package, next_address=None):
+def mindistancefromaddress(address, package, next_address=None):
     minn = 1000  # distance
-    next_address  # null
+    next_address = ''  # null
     next_id = 0
 
     return next_address, next_id, minn
@@ -160,15 +160,14 @@ truck3 = Truck
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
 # some must go on truck 3 if special instructions given.
 
-loadtruck1 = truck1(16, 18, 16, [1, 2, 4, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 39, 40])
-loadtruck2 = truck2(16, 18, 16, [3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38])
-loadtruck3 = truck3(8, 18, 8, [9, 24, 26, 27, 28, 32, 33, 35])
+loadtruck1 = [truck1, 16, 18, 16, [1, 2, 4, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 39, 40]]
+loadtruck2 = [truck2, 16, 18, 16, [3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38]]
+loadtruck3 = [truck3, 8, 18, 8, [9, 24, 26, 27, 28, 32, 33, 35]]
 
-
-
+#12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
-def truckdeliveringpackages(truck, starttime, min_distance_from_address, miles=None):
+def truckdeliveringpackages(truck, starttime, mindistancefromaddress, miles=None):
     return miles
 
 
