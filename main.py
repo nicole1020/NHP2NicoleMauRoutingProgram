@@ -159,12 +159,61 @@ truck3 = Truck
 # loading trucks manually
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
 # some must go on truck 3 if special instructions given.
+# loading truck 1, pid, address, delivery time, weight, special notes
+loadtruck1 = [
+    [1, '195 W Oakland Ave', 'Salt Lake City', 'UT', 84115, '10:30 AM', 21, ''],
+    [2, '2530 S 500 E', 'Salt Lake City', 'UT', 84106, 'EOD', 44, ''],
+    [4, '380 W 2880 S', 'Salt Lake City', 'UT', 84115, 'EOD', 4, ''],
+    [13, '2010 W 500 S', 'Salt Lake City', 'UT', 84104, '10:30 AM', 2, ''],
+    [14, '4300 S 1300 E', 'Millcreek', 'UT', 84117, '10:30 AM', 88, 'Must be delivered with 15 & 19'],
+    [15, '4580 S 2300 E', 'Holladay', 'UT', 84117, '9:00 AM', 4, ''],
+    [16, '4580 S 2300 E', 'Holladay', 'UT', 84117, '10:30 AM', 88, 'Must be delivered with 13 & 19'],
+    [19, '177 W Price Ave', 'Salt Lake City', 'UT', 84115, 'EOD', 37, ''],
+    [20, '3595 Main St', 'Salt Lake City', 'UT', 84115, '10:30 AM', 37, 'Must be delivered with 13 & 15'],
+    [29, '1330 2100 S', 'Salt Lake City', 'UT', 84106, '10:30 AM', 2, ''],
+    [30, '300 State St', 'Salt Lake City', 'UT', 84103, '10:30 AM', 1, ''],
+    [31, '3365 S 900 W', 'Salt Lake City', 'UT', 84119, '10:30 AM', 1, ''],
+    [34, '4580 S 2300 E', 'Holladay', 'UT', 84117, '10:30 AM', 2, ''],
+    [37, '410 S State St', 'Salt Lake City', 'UT', 84111, '10:30 AM', 2, ''],
+    [39, '2010 W 500 S', 'Salt Lake City', 'UT', 84104, 'EOD', 9, ''],
+    [40, '380 W 2880 S', 'Salt Lake City', 'UT', 84115, '10:30 AM', 45, '']]
 
-loadtruck1 = [truck1, 16, 18, 16, [1, 2, 4, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 39, 40]]
-loadtruck2 = [truck2, 16, 18, 16, [3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38]]
-loadtruck3 = [truck3, 8, 18, 8, [9, 24, 26, 27, 28, 32, 33, 35]]
+print(loadtruck1[1])
 
-#12/10 work on delivering packages next
+loadtruck2 = [
+    [3, '233 Canyon Rd', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Can only be on truck 2'],
+    [5, '410 S State St', 'Salt Lake City', 'UT', 84111, 'EOD', 5, ''],
+    [6, '3060 Lester St', 'West Valley City', 'UT', 84119, '10:30 AM', 88,
+     'Delayed on flight---will not arrive to depot until 9:05 am'],
+    [7, '1330 2100 S', 'Salt Lake City', 'UT', 84106, 'EOD', 8, ''],
+    [8, '300 State St', 'Salt Lake City', 'UT', 84103, 'EOD', 9, ''],
+    [10, '600 E 900 South', 'Salt Lake City', 'UT', 84105, 'EOD', 1, ''],
+    [11, '2600 Taylorsville Blvd', 'Salt Lake City', 'UT', 84118, 'EOD', 1, ''],
+    [12, '3575 W Valley Central Station bus Loop', 'West Valley City', 'UT', 84119, 'EOD', 1, ''],
+    [17, '3148 S 1100 W', 'Salt Lake City', 'UT', 84119, 'EOD', 2, ''],
+    [18, '1488 4800 S', 'Salt Lake City', 'UT', 84123, 'EOD', 6, 'Can only be on truck 2'],
+    [21, '3595 Main St', 'Salt Lake City', 'UT', 84115, 'EOD', 3, ''],
+    [22, '6351 South 900 East', 'Murray', 'UT', 84121, 'EOD', 2, ''],
+    [23, '5100 South 2700 West', 'Salt Lake City', 'UT', 84118, 'EOD', 5, ''],
+    [25, '5383 South 900 East #104', 'Salt Lake City', 'UT', 84117, '10:30 AM', 7,
+     'Delayed on flight-will not arrive to depot until 9:05 am'],
+    [36, '2300 Parkway Blvd', 'West Valley City', 'UT', 84119, 'EOD', 88, 'Can only be on truck 2'],
+    [38, '410 S State St', 'Salt Lake City', 'UT', 84111, 'EOD', 9, 'Can only be on truck 2']
+]
+
+loadtruck3 = [[9, '300 State St', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Wrong address listed'],
+              [24, '5025 State St', 'Murray', 'UT', 84107, 'EOD', 7, ''],
+              [26, '5383 South 900 East #104', 'Salt Lake City', 'UT', 84117, 'EOD', 25, ''],
+              [27, '1060 Dalton Ave S', 'Salt Lake City', 'UT', 84104, 'EOD', 5, ''],
+              [28, '2835 Main St', 'Salt Lake City', 'UT', 84115, 'EOD', 7,
+               'Delayed on flight-will not arrive to depot until 9:05 am'],
+              [32, '3365 S 900 W', 'Salt Lake City', 'UT', 84119, 'EOD', 1,
+               'Delayed on flight-will not arrive to depot until 9:05 am'],
+              [33, '2530 S 500 E', 'Salt Lake City', 'UT', 84106, 'EOD', 1, ''],
+              [35, '1060 Dalton Ave S', 'Salt Lake City', 'UT', 84104, 'EOD', 88, '']]
+
+
+# 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
 def truckdeliveringpackages(truck, starttime, mindistancefromaddress, miles=None):
