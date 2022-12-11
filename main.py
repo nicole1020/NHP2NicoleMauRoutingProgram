@@ -213,6 +213,12 @@ loadtruck3 = [[9, '300 State St', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Wron
               [35, '1060 Dalton Ave S', 'Salt Lake City', 'UT', 84104, 'EOD', 88, '']]
 
 
+allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
+
+
+print(allpackagesarray)
+
+
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
