@@ -248,8 +248,7 @@ def getPackageDataTime():
 
 
 if __name__ == '__main__':
-    print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm (Nearest Neighbor), "
-          "Dijkstra Algorithm")
+    print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm (Nearest Neighbor)")
 
     # loop until user is satisfied
     isExit = True
