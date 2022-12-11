@@ -152,9 +152,11 @@ def mindistancefromaddress(address, package, next_address=None):
 
 # edit truck 1 as needed
 # instantiated truck objects 1,2, and 3
-truck1 = Truck
-truck2 = Truck
-truck3 = Truck
+def allpackagesarray(param, param1):
+    pass
+
+
+
 
 # loading trucks manually
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
@@ -178,7 +180,7 @@ loadtruck1 = [
     [39, '2010 W 500 S', 'Salt Lake City', 'UT', 84104, 'EOD', 9, ''],
     [40, '380 W 2880 S', 'Salt Lake City', 'UT', 84115, '10:30 AM', 45, '']]
 
-print(loadtruck1[1])
+print(loadtruck1)
 
 loadtruck2 = [
     [3, '233 Canyon Rd', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Can only be on truck 2'],
@@ -215,14 +217,16 @@ loadtruck3 = [[9, '300 State St', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Wron
 
 allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 
+truck1 = Truck(16,18,16, loadtruck1)
+truck2 = Truck(16,18,16, loadtruck2)
+truck3 = Truck(16,18,8, loadtruck3)
 
-print(allpackagesarray)
-
+print(truck2)
 
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
-def truckdeliveringpackages(truck, starttime, mindistancefromaddress, miles=None):
+def deliveringpackages(truck, starttime, mindistancefromaddress, miles=None):
     return miles
 
 
