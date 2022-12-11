@@ -131,12 +131,6 @@ def distanceinbetween(add1, add2):
 print((distanceinbetween('4001 South 700 East',
                          '1060 Dalton Ave S', )))
 
-
-
-
-
-
-
 # loading trucks manually
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
 # some must go on truck 3 if special instructions given.
@@ -199,14 +193,14 @@ allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 # test print all packages in list
 print(allpackagesarray)
 
-
 # instantiated truck objects 1,2, and 3
-truck1 = Truck(16,18,16, loadtruck1)
-truck2 = Truck(16,18,16, loadtruck2)
-truck3 = Truck(16,18,8, loadtruck3)
+truck1 = Truck(16, 18, 16, loadtruck1)
+truck2 = Truck(16, 18, 16, loadtruck2)
+truck3 = Truck(16, 18, 8, loadtruck3)
 
 # test print truck
 print(truck2)
+
 
 # https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
 # C.2) Function to find min distance/address:
@@ -218,24 +212,33 @@ print(truck2)
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
-def mindistancefromaddress(address, package, next_address=None):
+def mindistancefromaddress(address, package, nextaddress=None):
     minn = 1000  # distance
     next_address = ''  # null
     next_id = 0
-    address = Truck.currentaddress()
-    return next_address, next_id, minn
+    currentaddress = Truck.currentaddress
+    i = currentaddress
+    j = nextaddress
+    for nextaddress in addressData:
+        if distanceinbetween(i, j) > 0:
+            print('true')
+    return nextaddress, next_id, minn
+
 
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
 def deliveringpackages(truck, starttime, mindistancefromaddress, miles=None):
     truck = (truck1, truck2, truck3)
-    starttime = ('08:00', '09:05','11:00')
+    starttime = ('08:00', '09:05', '11:00')
     truck1.starttime('08:00')
     truck2.starttime('9:05')
     truck3.starttime('11:00')
     mindistancefromaddress()
     return miles
+
+
+print(deliveringpackages)
 
 
 # calls min_distance_from_address
