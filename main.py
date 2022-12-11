@@ -132,28 +132,7 @@ print((distanceinbetween('4001 South 700 East',
                          '1060 Dalton Ave S', )))
 
 
-# https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
-# C.2) Function to find min distance/address:
-# 10-Define minDistanceFrom(fromAddress, truckPackages)
-# 11-Return min distance address to fromAddress
-#   i.e. call distanceBetween(address1, address2) in a loop for all the addresses in the Truck
 
-# mindistancefromaddress(address,package(list)) min = 1000, next address #null, next id = 0, returns next address next id,
-# https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
-# minn#distance NN here. call NN in delivering packages
-# deliver next package to the closest address.
-def mindistancefromaddress(address, package, next_address=None):
-    minn = 1000  # distance
-    next_address = ''  # null
-    next_id = 0
-
-    return next_address, next_id, minn
-
-
-# edit truck 1 as needed
-# instantiated truck objects 1,2, and 3
-def allpackagesarray(param, param1):
-    pass
 
 
 
@@ -214,19 +193,48 @@ loadtruck3 = [[9, '300 State St', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Wron
               [33, '2530 S 500 E', 'Salt Lake City', 'UT', 84106, 'EOD', 1, ''],
               [35, '1060 Dalton Ave S', 'Salt Lake City', 'UT', 84104, 'EOD', 88, '']]
 
-
+# all packages in list on trucks
 allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 
+# test print all packages in list
+print(allpackagesarray)
+
+
+# instantiated truck objects 1,2, and 3
 truck1 = Truck(16,18,16, loadtruck1)
 truck2 = Truck(16,18,16, loadtruck2)
 truck3 = Truck(16,18,8, loadtruck3)
 
+# test print truck
 print(truck2)
+
+# https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
+# C.2) Function to find min distance/address:
+# 10-Define minDistanceFrom(fromAddress, truckPackages)
+# 11-Return min distance address to fromAddress
+#   i.e. call distanceBetween(address1, address2) in a loop for all the addresses in the Truck
+
+# mindistancefromaddress(address,package(list)) min = 1000, next address #null, next id = 0, returns next address next id,
+# https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
+# minn#distance NN here. call NN in delivering packages
+# deliver next package to the closest address.
+def mindistancefromaddress(address, package, next_address=None):
+    minn = 1000  # distance
+    next_address = ''  # null
+    next_id = 0
+    address = Truck.currentaddress()
+    return next_address, next_id, minn
 
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
 def deliveringpackages(truck, starttime, mindistancefromaddress, miles=None):
+    truck = (truck1, truck2, truck3)
+    starttime = ('08:00', '09:05','11:00')
+    truck1.starttime('08:00')
+    truck2.starttime('9:05')
+    truck3.starttime('11:00')
+    mindistancefromaddress()
     return miles
 
 
