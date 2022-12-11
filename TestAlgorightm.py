@@ -5,7 +5,7 @@
 from csv import reader
 from math import sqrt
 
-from main import distancedatalist
+from main import distanceData
 
 
 # Load a CSV file
@@ -89,7 +89,7 @@ def predict_classification(train, test_row, num_neighbors):
 
 
 # Make a prediction with KNN on Iris Dataset
-dataset = distancedatalist
+dataset = distanceData
 for i in range(len(dataset)):
     str_column_to_float(dataset, i)
 # convert class column to integers
