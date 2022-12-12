@@ -194,9 +194,9 @@ allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 print(allpackagesarray)
 
 # instantiated truck objects 1,2, and 3
-truck1 = Truck(16, 18, 16, loadtruck1)
-truck2 = Truck(16, 18, 16, loadtruck2)
-truck3 = Truck(16, 18, 8, loadtruck3)
+truck1 = Truck(16, 18, 387, loadtruck1)
+truck2 = Truck(16, 18, 237, loadtruck2)
+truck3 = Truck(16, 18, 136, loadtruck3)
 
 # test print truck
 print(truck2)
@@ -208,21 +208,25 @@ print(truck2)
 # 11-Return min distance address to fromAddress
 #   i.e. call distanceBetween(address1, address2) in a loop for all the addresses in the Truck
 
+# https://stackoverflow.com/questions/56993212/how-to-loop-a-list-without-repeating-the-pair
 # mindistancefromaddress(address,package(list)) min = 1000, next address #null, next id = 0, returns next address next id,
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
 def mindistancefromaddress(address, package, nextaddress=None):
     minn = 1000  # distance
-    next_address = ''  # null
-    next_id = 0
+    nextaddress = ''  # null
+    nextid = 0
+
     currentaddress = Truck.currentaddress
+
     i = currentaddress
     j = nextaddress
+
     for nextaddress in addressData:
         if distanceinbetween(i, j) > 0:
             print('true')
-    return nextaddress, next_id, minn
+    return nextaddress, nextid, minn
 
 
 # 12/10 work on delivering packages next
