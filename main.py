@@ -217,13 +217,14 @@ def mindistancefromaddress(address, package, nextaddress=None):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = 0
-
+    address = addressData
     currentaddress = Truck.currentaddress
 
     i = currentaddress
     j = nextaddress
 
-    for nextaddress in addressData:
+    for nextaddress in address:
+
         if distanceinbetween(i, j) > 0:
             print('true')
     return nextaddress, nextid, minn
