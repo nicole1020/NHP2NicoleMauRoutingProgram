@@ -7,7 +7,8 @@
 
 from Hash import ChainingHashTable
 from Package import loadPackageData
-from Truck import Truck, loadingpackages, deliveringpackages
+from Truck import Truck
+import datetime
 
 # Hash table instance
 packagehashtable = ChainingHashTable()
@@ -136,23 +137,7 @@ print((distanceinbetween('4001 South 700 East',
 # some must go on truck 3 if special instructions given.
 # loading truck 1, pid, address, delivery time, weight, special notes
 loadtruck1 = [
-    [1, '195 W Oakland Ave', 'Salt Lake City', 'UT', 84115, '10:30 AM', 21, ''],
-    [2, '2530 S 500 E', 'Salt Lake City', 'UT', 84106, 'EOD', 44, ''],
-    [4, '380 W 2880 S', 'Salt Lake City', 'UT', 84115, 'EOD', 4, ''],
-    [13, '2010 W 500 S', 'Salt Lake City', 'UT', 84104, '10:30 AM', 2, ''],
-    [14, '4300 S 1300 E', 'Millcreek', 'UT', 84117, '10:30 AM', 88, 'Must be delivered with 15 & 19'],
-    [15, '4580 S 2300 E', 'Holladay', 'UT', 84117, '9:00 AM', 4, ''],
-    [16, '4580 S 2300 E', 'Holladay', 'UT', 84117, '10:30 AM', 88, 'Must be delivered with 13 & 19'],
-    [19, '177 W Price Ave', 'Salt Lake City', 'UT', 84115, 'EOD', 37, ''],
-    [20, '3595 Main St', 'Salt Lake City', 'UT', 84115, '10:30 AM', 37, 'Must be delivered with 13 & 15'],
-    [29, '1330 2100 S', 'Salt Lake City', 'UT', 84106, '10:30 AM', 2, ''],
-    [30, '300 State St', 'Salt Lake City', 'UT', 84103, '10:30 AM', 1, ''],
-    [31, '3365 S 900 W', 'Salt Lake City', 'UT', 84119, '10:30 AM', 1, ''],
-    [34, '4580 S 2300 E', 'Holladay', 'UT', 84117, '10:30 AM', 2, ''],
-    [37, '410 S State St', 'Salt Lake City', 'UT', 84111, '10:30 AM', 2, ''],
-    [39, '2010 W 500 S', 'Salt Lake City', 'UT', 84104, 'EOD', 9, ''],
-    [40, '380 W 2880 S', 'Salt Lake City', 'UT', 84115, '10:30 AM', 45, '']]
-
+   1,2,4,13,14,16,19,15,20,34,29,30,31,37,40,39]
 print(loadtruck1)
 
 loadtruck2 = [
@@ -193,13 +178,31 @@ allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 # test print all packages in list
 print(allpackagesarray)
 
+starttime = '08:00:00'
+h, m, s = starttime.split(':')
+timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+print(timeobject)
+
+truck1 = Truck(16, 18, loadtruck1, timeobject)
 # instantiated truck objects 1,2, and 3
-truck1 = Truck(16, 18, 387, loadtruck1)
-truck2 = Truck(16, 18, 237, loadtruck2)
-truck3 = Truck(16, 18, 136, loadtruck3)
+print(truck1.starttime)
+print(truck1.time)
+
+starttime = '09:05:00'
+h, m, s = starttime.split(':')
+timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+print(timeobject)
+
+truck2 = Truck(16, 18, loadtruck2, timeobject)
+starttime = '11:00:00'
+h, m, s = starttime.split(':')
+timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+print(timeobject)
+
+truck3 = Truck(16, 18, loadtruck3, timeobject)
+
 
 # test print truck
-print(truck2)
 
 
 # https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
@@ -213,37 +216,40 @@ print(truck2)
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
-def mindistancefromaddress(address, package, nextaddress=None):
+def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = 0
-    address = addressData
-    currentaddress = Truck.currentaddress
+    currentaddressid = packages
 
-    i = currentaddress
-    j = nextaddress
-
-    for nextaddress in address:
-
-        if distanceinbetween(i, j) > 0:
-            print('true')
+    for eachaddress in packages:
+        print(eachaddress)
+        j = addressData.index(eachaddress)
+        print(currentaddressid, j)
+        distance = distanceinbetween(currentaddressid, j)
+        print(distance)
+        # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
+        # if best result, eachaddress will be seach hash table for address
     return nextaddress, nextid, minn
 
 
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
-def deliveringpackages(truck, starttime, mindistancefromaddress, miles=None):
-    truck = (truck1, truck2, truck3)
-    starttime = ('08:00', '09:05', '11:00')
-    truck1.starttime('08:00')
-    truck2.starttime('9:05')
-    truck3.starttime('11:00')
-    mindistancefromaddress()
+def deliveringpackages(truck):
+    miles = 0
+    nextaddress = ''
+    nextid = 0
+    minn = 0
+    for eachpkg in truck.packages:
+        nextaddress, nextid, minn = mindistancefromaddress(truck.currentlocation, truck.packages)
+
+    # update miles based on distance traveled how many miles left, calculate next address, total distance, total distance traveled
+    # next address will be trucks current location, calculate time object to calculate time
     return miles
 
 
-print(deliveringpackages)
+deliveringpackages(truck1)
 
 
 # calls min_distance_from_address

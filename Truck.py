@@ -4,26 +4,18 @@ class Truck:
 
 
 
-    def __init__(self, capacity, speed, load, packages):
+    def __init__(self, capacity, speed, packages, timeleft):
         self.capacity = capacity
         self.speed = speed
-        self.load = load
         self.packages = packages
+        self.timeleft = timeleft
+        self.time = timeleft
+        self.currentlocation = '4001 South 700 East'
 
     def __str__(self):
-        return " %s, %s, %s, %s" % (self.capacity, self.speed, self.load, self.packages)
+        return " %s, %s, %s" % (self.capacity, self.speed, self.packages)
 
     def starttime(self, param):
         pass
     def currentaddress(self, param):
         pass
-
-# create truck object with packages array need to figure this out later
-def loadingpackages(truckid, capacity, miles, packageid, fileName):
-
-
-    return packageid
-
-
-def deliveringpackages(truck, starttime, miles=None):
-    return miles
