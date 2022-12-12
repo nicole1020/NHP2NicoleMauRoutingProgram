@@ -137,40 +137,14 @@ print((distanceinbetween('4001 South 700 East',
 # some must go on truck 3 if special instructions given.
 # loading truck 1, pid, address, delivery time, weight, special notes
 loadtruck1 = [
-   1,2,4,13,14,16,19,15,20,34,29,30,31,37,40,39]
+    1, 2, 4, 13, 14, 16, 19, 15, 20, 34, 29, 30, 31, 37, 40, 39]
 print(loadtruck1)
 
 loadtruck2 = [
-    [3, '233 Canyon Rd', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Can only be on truck 2'],
-    [5, '410 S State St', 'Salt Lake City', 'UT', 84111, 'EOD', 5, ''],
-    [6, '3060 Lester St', 'West Valley City', 'UT', 84119, '10:30 AM', 88,
-     'Delayed on flight---will not arrive to depot until 9:05 am'],
-    [7, '1330 2100 S', 'Salt Lake City', 'UT', 84106, 'EOD', 8, ''],
-    [8, '300 State St', 'Salt Lake City', 'UT', 84103, 'EOD', 9, ''],
-    [10, '600 E 900 South', 'Salt Lake City', 'UT', 84105, 'EOD', 1, ''],
-    [11, '2600 Taylorsville Blvd', 'Salt Lake City', 'UT', 84118, 'EOD', 1, ''],
-    [12, '3575 W Valley Central Station bus Loop', 'West Valley City', 'UT', 84119, 'EOD', 1, ''],
-    [17, '3148 S 1100 W', 'Salt Lake City', 'UT', 84119, 'EOD', 2, ''],
-    [18, '1488 4800 S', 'Salt Lake City', 'UT', 84123, 'EOD', 6, 'Can only be on truck 2'],
-    [21, '3595 Main St', 'Salt Lake City', 'UT', 84115, 'EOD', 3, ''],
-    [22, '6351 South 900 East', 'Murray', 'UT', 84121, 'EOD', 2, ''],
-    [23, '5100 South 2700 West', 'Salt Lake City', 'UT', 84118, 'EOD', 5, ''],
-    [25, '5383 South 900 East #104', 'Salt Lake City', 'UT', 84117, '10:30 AM', 7,
-     'Delayed on flight-will not arrive to depot until 9:05 am'],
-    [36, '2300 Parkway Blvd', 'West Valley City', 'UT', 84119, 'EOD', 88, 'Can only be on truck 2'],
-    [38, '410 S State St', 'Salt Lake City', 'UT', 84111, 'EOD', 9, 'Can only be on truck 2']
+    3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38
 ]
 
-loadtruck3 = [[9, '300 State St', 'Salt Lake City', 'UT', 84103, 'EOD', 2, 'Wrong address listed'],
-              [24, '5025 State St', 'Murray', 'UT', 84107, 'EOD', 7, ''],
-              [26, '5383 South 900 East #104', 'Salt Lake City', 'UT', 84117, 'EOD', 25, ''],
-              [27, '1060 Dalton Ave S', 'Salt Lake City', 'UT', 84104, 'EOD', 5, ''],
-              [28, '2835 Main St', 'Salt Lake City', 'UT', 84115, 'EOD', 7,
-               'Delayed on flight-will not arrive to depot until 9:05 am'],
-              [32, '3365 S 900 W', 'Salt Lake City', 'UT', 84119, 'EOD', 1,
-               'Delayed on flight-will not arrive to depot until 9:05 am'],
-              [33, '2530 S 500 E', 'Salt Lake City', 'UT', 84106, 'EOD', 1, ''],
-              [35, '1060 Dalton Ave S', 'Salt Lake City', 'UT', 84104, 'EOD', 88, '']]
+loadtruck3 = [9, 24, 26, 27, 28, 32, 33, 35]
 
 # all packages in list on trucks
 allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
