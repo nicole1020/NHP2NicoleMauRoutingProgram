@@ -196,15 +196,19 @@ def mindistancefromaddress(address, packages):
     nextid = 0
     currentaddressid = packages
 
-    for eachaddress in packages:
-        print(eachaddress)
-        j = addressData.index(eachaddress)
-        print(currentaddressid, j)
-        distance = distanceinbetween(currentaddressid, j)
-        print(distance)
+    if address in packages:
+        print(address)
+        ad = addressData.index(address)
+        print(currentaddressid, ad)
+        distance = distanceinbetween(currentaddressid, ad)
+        print("This is the distance in miles: ", distance)
+
+    else:
+        print('Address not in list')
+    return nextaddress, nextid, minn
         # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
         # if best result, eachaddress will be seach hash table for address
-    return nextaddress, nextid, minn
+
 
 
 # 12/10 work on delivering packages next
