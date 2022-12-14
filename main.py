@@ -4,18 +4,43 @@
 # Ref: zyBooks: 3.3.1: MakeChange greedy algorithm.
 # Ref: zyBooks: zyDE 6.12.1: Dijkstra's shortest path example.
 # Ref: Graph Data Structure 4.
-
+import csv
 from Hash import ChainingHashTable
-from Package import loadPackageData
+from Package import Package
 from Truck import Truck
 import datetime
 
 # Hash table instance
 packagehashtable = ChainingHashTable()
 
+
+def loadPackageData(fileName, packagehashtable):
+    with open(fileName) as packages:
+        packageData = csv.reader(packages, delimiter=",")
+        next(packageData)  # skip header
+        for package in packageData:
+            pID = int(package[0])
+            pAddress = package[1]
+            pCity = package[2]
+            pState = package[3]
+            pZip = package[4]
+            pDt = package[5]
+            pWeight = package[6]
+            pNotes = package[7]
+            pStatus = "Unknown"
+
+            # package object
+            p = Package(pID, pAddress, pCity, pState, pZip, pDt, pWeight, pNotes, pStatus)
+            # print(p)
+
+            # insert it into the hash table
+            packagehashtable.insert(pID, p)
+
+    return packages
+
+
 # Load packages to Hash Table
 loadPackageData('Package.csv', packagehashtable)
-
 # 2d lists below
 # https://www.pythonpool.com/python-2d-list/
 # address list rows (x)
@@ -101,6 +126,8 @@ distanceData = [
     [3.6, 13.0, 7.4, 10.1, 5.5, 7.2, 14.2, 10.7, 14.1, 6.0, 6.8, 6.4, 14.1, 10.5, 8.8, 8.4, 13.6, 5.2, 6.9, 13.1, 4.1,
      4.7, 3.1, 7.8, 1.3, 8.3, 0.0],
 ]
+
+
 # print(distanceData[2][0])
 
 
@@ -152,8 +179,8 @@ allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 # test print all packages in list
 # print(allpackagesarray)
 
-starttime = '08:00:00'
-h, m, s = starttime.split(':')
+starttime1 = '08:00:00'
+h, m, s = starttime1.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
@@ -162,14 +189,14 @@ truck1 = Truck(16, 18, loadtruck1, timeobject)
 # print(truck1.starttime)
 # print(truck1.time)
 
-starttime = '09:05:00'
-h, m, s = starttime.split(':')
+starttime2 = '09:05:00'
+h, m, s = starttime2.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
 truck2 = Truck(16, 18, loadtruck2, timeobject)
-starttime = '11:00:00'
-h, m, s = starttime.split(':')
+starttime3 = '11:00:00'
+h, m, s = starttime3.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
@@ -190,24 +217,29 @@ truck3 = Truck(16, 18, loadtruck3, timeobject)
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
+# trouble selecting packages from list by address (https://www.tutorialspoint.com/list-methods-in-python-in-not-in-len-min-max)
 def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = None
-    currentaddressid = 0
 
+    currentaddressid = packages
     for eachaddress in packages:
-        print(eachaddress)
         # take address from hash and find its address id in addressData
-        address = addressData.index(eachaddress)
+        print(eachaddress)
+        package = packagehashtable.search(eachaddress)
+        add2 = package.address
+        fdistance = distanceinbetween(address, add2)
+        #  if addressData[eachaddress] == '':
+        #           address2 = packagehashtable[eachaddress]
 
-        print(currentaddressid, address)
-        distance = distanceinbetween(currentaddressid, address)
-        print("This is the distance in miles: ", distance)
+        print("This is the distance in miles: ", fdistance)
+        if fdistance < minn:
+            minn = fdistance
+            nextaddress = add2
+            nextid = package
 
-    else:
-        print('Address already visited')
-    return nextaddress, nextid, minn
+        return nextaddress, nextid, minn
     # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
     # if best result, eachaddress will be seach hash table for address
 
@@ -216,10 +248,11 @@ def mindistancefromaddress(address, packages):
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
 def deliveringpackages(trucks):
-    miles = 0
+    miles = ''
     nextaddress = ''
-    nextid = 0
-    minn = 0
+    nextid = ''
+    minn = ''
+
     packages = trucks.packages
     for eachpkg in packages:
         nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, packages)
@@ -229,7 +262,13 @@ def deliveringpackages(trucks):
     return miles
 
 
-deliveringpackages(truck2)
+truck1miles = deliveringpackages(truck1)
+
+truck2miles = deliveringpackages(truck2)
+
+truck3miles = deliveringpackages(truck3)
+
+totalmiles = truck1miles + truck2miles + truck3miles
 
 
 # calls min_distance_from_address

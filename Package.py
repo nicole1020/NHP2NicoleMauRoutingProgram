@@ -1,4 +1,3 @@
-import csv
 
 
 class Package:
@@ -21,29 +20,5 @@ class Package:
         return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (
             self.id, self.address, self.city, self.state, self.zip, self.dt, self.weight, self.notes, self.status)
 
-
-def loadPackageData(fileName, packagehashtable):
-    with open(fileName) as packages:
-        packageData = csv.reader(packages, delimiter=',')
-        next(packageData)  # skip header
-        for package in packageData:
-            pID = int(package[0])
-            pAddress = package[1]
-            pCity = package[2]
-            pState = package[3]
-            pZip = package[4]
-            pDt = package[5]
-            pWeight = package[6]
-            pNotes = package[7]
-            pStatus = "Unknown"
-
-            # package object
-            p = Package(pID, pAddress, pCity, pState, pZip, pDt, pWeight, pNotes, pStatus)
-            # print(p)
-
-            # insert it into the hash table
-            packagehashtable.insert(pID, p)
-
-    return packages
 
 
