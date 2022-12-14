@@ -50,7 +50,7 @@ addressData = [
     '6351 South 900 East',
 ]
 
-print(addressData[0])
+# print(addressData[0])
 distanceData = [
     [0.0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
     [7.2, 0.0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
@@ -101,7 +101,7 @@ distanceData = [
     [3.6, 13.0, 7.4, 10.1, 5.5, 7.2, 14.2, 10.7, 14.1, 6.0, 6.8, 6.4, 14.1, 10.5, 8.8, 8.4, 13.6, 5.2, 6.9, 13.1, 4.1,
      4.7, 3.1, 7.8, 1.3, 8.3, 0.0],
 ]
-print(distanceData[2][0])
+# print(distanceData[2][0])
 
 
 def getPackageData():
@@ -129,8 +129,8 @@ def distanceinbetween(add1, add2):
     return float(vReturn)
 
 
-print((distanceinbetween('4001 South 700 East',
-                         '1060 Dalton Ave S', )))
+# print((distanceinbetween('4001 South 700 East',
+#                         '1060 Dalton Ave S', )))
 
 # loading trucks manually
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
@@ -138,7 +138,7 @@ print((distanceinbetween('4001 South 700 East',
 # loading truck 1, pid, address, delivery time, weight, special notes
 loadtruck1 = [
     1, 2, 4, 13, 14, 16, 19, 15, 20, 34, 29, 30, 31, 37, 40, 39]
-print(loadtruck1)
+# print(loadtruck1)
 
 loadtruck2 = [
     3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38
@@ -150,28 +150,28 @@ loadtruck3 = [9, 24, 26, 27, 28, 32, 33, 35]
 allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 
 # test print all packages in list
-print(allpackagesarray)
+# print(allpackagesarray)
 
 starttime = '08:00:00'
 h, m, s = starttime.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
-print(timeobject)
+# print(timeobject)
 
 truck1 = Truck(16, 18, loadtruck1, timeobject)
 # instantiated truck objects 1,2, and 3
-print(truck1.starttime)
-print(truck1.time)
+# print(truck1.starttime)
+# print(truck1.time)
 
 starttime = '09:05:00'
 h, m, s = starttime.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
-print(timeobject)
+# print(timeobject)
 
 truck2 = Truck(16, 18, loadtruck2, timeobject)
 starttime = '11:00:00'
 h, m, s = starttime.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
-print(timeobject)
+# print(timeobject)
 
 truck3 = Truck(16, 18, loadtruck3, timeobject)
 
@@ -194,13 +194,13 @@ def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = None
-    currentaddressid = packages
+    currentaddressid = 0
 
     for eachaddress in packages:
         print(eachaddress)
-        ad = packagehashtable.search(eachaddress)
         # take address from hash and find its address id in addressData
-        address = addressData.index(ad)
+        address = addressData.index(eachaddress)
+
         print(currentaddressid, address)
         distance = distanceinbetween(currentaddressid, address)
         print("This is the distance in miles: ", distance)
@@ -220,8 +220,9 @@ def deliveringpackages(trucks):
     nextaddress = ''
     nextid = 0
     minn = 0
-    for eachpkg in trucks.packages:
-        nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, trucks.packages)
+    packages = trucks.packages
+    for eachpkg in packages:
+        nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, packages)
 
     # update miles based on distance traveled how many miles left, calculate next address, total distance, total distance traveled
     # next address will be trucks current location, calculate time object to calculate time
