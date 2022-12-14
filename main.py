@@ -176,7 +176,6 @@ print(timeobject)
 truck3 = Truck(16, 18, loadtruck3, timeobject)
 
 
-
 # test print truck
 
 
@@ -200,7 +199,7 @@ def mindistancefromaddress(address, packages):
     for eachaddress in packages:
         print(eachaddress)
         ad = packagehashtable.search(eachaddress)
-        #take address from hash and find its address id in addressData
+        # take address from hash and find its address id in addressData
         address = addressData.index(ad)
         print(currentaddressid, address)
         distance = distanceinbetween(currentaddressid, address)
@@ -229,7 +228,7 @@ def deliveringpackages(trucks):
     return miles
 
 
-deliveringpackages(truck3)
+deliveringpackages(truck2)
 
 
 # calls min_distance_from_address
