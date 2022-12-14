@@ -176,6 +176,7 @@ print(timeobject)
 truck3 = Truck(16, 18, loadtruck3, timeobject)
 
 
+
 # test print truck
 
 
@@ -190,25 +191,26 @@ truck3 = Truck(16, 18, loadtruck3, timeobject)
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
-def mindistancefromaddress(currentaddress, packages):
+def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = None
     currentaddressid = packages
 
-    if currentaddress in packages:
-        print(currentaddress)
-        ad = addressData.index(currentaddress)
-        print(currentaddressid, ad)
-        distance = distanceinbetween(currentaddressid, ad)
+    for eachaddress in packages:
+        print(eachaddress)
+        ad = packagehashtable.search(eachaddress)
+        #take address from hash and find its address id in addressData
+        address = addressData.index(ad)
+        print(currentaddressid, address)
+        distance = distanceinbetween(currentaddressid, address)
         print("This is the distance in miles: ", distance)
 
     else:
         print('Address already visited')
     return nextaddress, nextid, minn
-        # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
-        # if best result, eachaddress will be seach hash table for address
-
+    # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
+    # if best result, eachaddress will be seach hash table for address
 
 
 # 12/10 work on delivering packages next
@@ -227,7 +229,7 @@ def deliveringpackages(trucks):
     return miles
 
 
-deliveringpackages(truck1)
+deliveringpackages(truck3)
 
 
 # calls min_distance_from_address
