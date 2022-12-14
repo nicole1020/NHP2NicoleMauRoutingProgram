@@ -226,18 +226,16 @@ def mindistancefromaddress(address, packages):
     currentaddressid = packages
     for eachaddress in packages:
         # take address from hash and find its address id in addressData
-        print(eachaddress)
+       # print(eachaddress)
         package = packagehashtable.search(eachaddress)
         add2 = package.address
         fdistance = distanceinbetween(address, add2)
-        #  if addressData[eachaddress] == '':
-        #           address2 = packagehashtable[eachaddress]
 
         print("This is the distance in miles: ", fdistance)
         if fdistance < minn:
             minn = fdistance
             nextaddress = add2
-            nextid = package
+            nextid = id(package)
 
         return nextaddress, nextid, minn
     # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
@@ -252,8 +250,8 @@ def deliveringpackages(trucks):
     nextaddress = ''
     nextid = ''
     minn = ''
-
     packages = trucks.packages
+
     for eachpkg in packages:
         nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, packages)
 
