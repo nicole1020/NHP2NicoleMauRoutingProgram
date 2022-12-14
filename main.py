@@ -190,21 +190,21 @@ truck3 = Truck(16, 18, loadtruck3, timeobject)
 # https://stemlounge.com/animated-algorithms-for-the-traveling-salesman-problem/ o(n^2) complexity
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
-def mindistancefromaddress(address, packages):
+def mindistancefromaddress(currentaddress, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
-    nextid = 0
+    nextid = None
     currentaddressid = packages
 
-    if address in packages:
-        print(address)
-        ad = addressData.index(address)
+    if currentaddress in packages:
+        print(currentaddress)
+        ad = addressData.index(currentaddress)
         print(currentaddressid, ad)
         distance = distanceinbetween(currentaddressid, ad)
         print("This is the distance in miles: ", distance)
 
     else:
-        print('Address not in list')
+        print('Address already visited')
     return nextaddress, nextid, minn
         # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
         # if best result, eachaddress will be seach hash table for address
@@ -214,13 +214,13 @@ def mindistancefromaddress(address, packages):
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
-def deliveringpackages(truck):
+def deliveringpackages(trucks):
     miles = 0
     nextaddress = ''
     nextid = 0
     minn = 0
-    for eachpkg in truck.packages:
-        nextaddress, nextid, minn = mindistancefromaddress(truck.currentlocation, truck.packages)
+    for eachpkg in trucks.packages:
+        nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, trucks.packages)
 
     # update miles based on distance traveled how many miles left, calculate next address, total distance, total distance traveled
     # next address will be trucks current location, calculate time object to calculate time
