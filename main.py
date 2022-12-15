@@ -45,35 +45,7 @@ loadPackageData('Package.csv', packagehashtable)
 # https://www.pythonpool.com/python-2d-list/
 # address list rows (x)
 
-addressData = [
-    '4001 South 700 East',
-    '1060 Dalton Ave S',
-    '1330 2100 S',
-    '1488 4800 S',
-    '177 W Price Ave',
-    '195 W Oakland Ave',
-    '2010 W 500 S',
-    '2300 Parkway Blvd',
-    '233 Canyon Rd',
-    '2530 S 500 E',
-    '2600 Taylorsville Blvd',
-    '2835 Main St',
-    '300 State St',
-    '3060 Lester St',
-    '3148 S 1100 W',
-    '3365 S 900 W',
-    '3575 W Valley Central Sta bus Loop',
-    '3595 Main St',
-    '380 W 2880 S',
-    '410 S State St',
-    '4300 S 1300 E',
-    '4580 S 2300 E',
-    '5025 State St',
-    '5100 South 2700 West',
-    '5383 South 900 East #104',
-    '600 E 900 South',
-    '6351 South 900 East',
-]
+addressData = ['4001 South 700 East','1060 Dalton Ave S','1330 2100 S','1488 4800 S','177 W Price Ave','195 W Oakland Ave','2010 W 500 S','2300 Parkway Blvd','233 Canyon Rd','2530 S 500 E','2600 Taylorsville Blvd','2835 Main St','300 State St','3060 Lester St','3148 S 1100 W','3365 S 900 W','3575 W Valley Central Sta bus Loop','3595 Main St','380 W 2880 S','410 S State St','4300 S 1300 E','4580 S 2300 E','5025 State St','5100 South 2700 West','5383 South 900 East #104','600 E 900 South','6351 South 900 East']
 
 # print(addressData[0])
 distanceData = [
@@ -134,6 +106,7 @@ distanceData = [
 def getPackageData():
     print("Packages from Hashtable:")
     # Fetch data from Hash Table
+
     for i in range(len(packagehashtable.table) + 1):
         print("PackageID: {}".format(packagehashtable.search(i + 1)))  # 1 to 40 is sent to myHash.search()
 
@@ -163,15 +136,12 @@ def distanceinbetween(add1, add2):
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
 # some must go on truck 3 if special instructions given.
 # loading truck 1, pid, address, delivery time, weight, special notes
-loadtruck1 = [
-    1, 2, 4, 13, 14, 16, 19, 15, 20, 34, 29, 30, 31, 37, 40, 39]
+loadtruck1 = [1,2,4,13,14,16,19,15,20,34,29,30,31,37,40,39]
 # print(loadtruck1)
 
-loadtruck2 = [
-    3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38
-]
+loadtruck2 = [3,5,6,7,8,10,11,12,17,18,21,22,23,25,36,38]
 
-loadtruck3 = [9, 24, 26, 27, 28, 32, 33, 35]
+loadtruck3 = [9,24,26,27,28,32,33,35]
 
 # all packages in list on trucks
 allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
@@ -289,6 +259,7 @@ if __name__ == '__main__':
         option = input("Chose an option (1,2,or 3): ")
         if option == "1":
             getPackageData()
+            print("\nTotal miles traveled today: ", totalmiles)
         elif option == "2":
             print("Please enter package ID for more information")
             packageID = input(" ")
