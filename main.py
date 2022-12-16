@@ -45,7 +45,12 @@ loadPackageData('Package.csv', packagehashtable)
 # https://www.pythonpool.com/python-2d-list/
 # address list rows (x)
 
-addressData = ['4001 South 700 East','1060 Dalton Ave S','1330 2100 S','1488 4800 S','177 W Price Ave','195 W Oakland Ave','2010 W 500 S','2300 Parkway Blvd','233 Canyon Rd','2530 S 500 E','2600 Taylorsville Blvd','2835 Main St','300 State St','3060 Lester St','3148 S 1100 W','3365 S 900 W','3575 W Valley Central Sta bus Loop','3595 Main St','380 W 2880 S','410 S State St','4300 S 1300 E','4580 S 2300 E','5025 State St','5100 South 2700 West','5383 South 900 East #104','600 E 900 South','6351 South 900 East']
+addressData = ['4001 South 700 East', '1060 Dalton Ave S', '1330 2100 S', '1488 4800 S', '177 W Price Ave',
+               '195 W Oakland Ave', '2010 W 500 S', '2300 Parkway Blvd', '233 Canyon Rd', '2530 S 500 E',
+               '2600 Taylorsville Blvd', '2835 Main St', '300 State St', '3060 Lester St', '3148 S 1100 W',
+               '3365 S 900 W', '3575 W Valley Central Sta bus Loop', '3595 Main St', '380 W 2880 S', '410 S State St',
+               '4300 S 1300 E', '4580 S 2300 E', '5025 State St', '5100 South 2700 West', '5383 South 900 East #104',
+               '600 E 900 South', '6351 South 900 East']
 
 # print(addressData[0])
 distanceData = [
@@ -136,12 +141,12 @@ def distanceinbetween(add1, add2):
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
 # some must go on truck 3 if special instructions given.
 # loading truck 1, pid, address, delivery time, weight, special notes
-loadtruck1 = [1,2,4,13,14,16,19,15,20,34,29,30,31,37,40,39]
+loadtruck1 = list([1, 2, 4, 13, 14, 16, 19, 15, 20, 34, 29, 30, 31, 37, 40, 39])
 # print(loadtruck1)
 
-loadtruck2 = [3,5,6,7,8,10,11,12,17,18,21,22,23,25,36,38]
+loadtruck2 = list([3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38])
 
-loadtruck3 = [9,24,26,27,28,32,33,35]
+loadtruck3 = list([9, 24, 26, 27, 28, 32, 33, 35])
 
 # all packages in list on trucks
 allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
@@ -154,7 +159,7 @@ h, m, s = starttime1.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
-truck1 = Truck(16, 18, loadtruck1, timeobject)
+truck1 = Truck('truck1:', 16, 18, loadtruck1, timeobject)
 # instantiated truck objects 1,2, and 3
 # print(truck1.starttime)
 # print(truck1.time)
@@ -164,13 +169,13 @@ h, m, s = starttime2.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
-truck2 = Truck(16, 18, loadtruck2, timeobject)
+truck2 = Truck('truck2:', 16, 18, loadtruck2, timeobject)
 starttime3 = '11:00:00'
 h, m, s = starttime3.split(':')
 timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
-truck3 = Truck(16, 18, loadtruck3, timeobject)
+truck3 = Truck('truck3:', 16, 18, loadtruck3, timeobject)
 
 
 # test print truck
@@ -188,26 +193,29 @@ truck3 = Truck(16, 18, loadtruck3, timeobject)
 # minn#distance NN here. call NN in delivering packages
 # deliver next package to the closest address.
 # trouble selecting packages from list by address (https://www.tutorialspoint.com/list-methods-in-python-in-not-in-len-min-max)
+# https://stackoverflow.com/questions/14588367/update-iteration-value-in-python-for-loop
 def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
-    nextid = None
+    nextid = 0
+    eachad = 0
 
-    currentaddressid = packages
-    for eachaddress in packages:
+    for i in range(len(packagehashtable.table) + 1):
         # take address from hash and find its address id in addressData
-       # print(eachaddress)
-        package = packagehashtable.search(eachaddress)
+        # print(eachaddress)
+        package = packagehashtable.search(i+1)
         add2 = package.address
         fdistance = distanceinbetween(address, add2)
-
-        print("This is the distance in miles: ", fdistance)
+        print("This is the distance in miles between starting address:", address, "& next address:", add2,
+              "with distance in miles:", fdistance)
         if fdistance < minn:
+            i += 1
             minn = fdistance
             nextaddress = add2
-            nextid = id(package)
+            nextid = package
 
         return nextaddress, nextid, minn
+
     # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
     # if best result, eachaddress will be seach hash table for address
 
@@ -220,23 +228,30 @@ def deliveringpackages(trucks):
     nextaddress = ''
     nextid = ''
     minn = ''
-    packages = trucks.packages
+    eachad=''
 
-    for eachpkg in packages:
-        nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, packages)
-
+    for packs in trucks.packages:
+        nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, trucks.packages)
+    print(trucks)
     # update miles based on distance traveled how many miles left, calculate next address, total distance, total distance traveled
     # next address will be trucks current location, calculate time object to calculate time
     return miles
 
 
-truck1miles = deliveringpackages(truck1)
+# needs to be at end of day
+alltruck1miles = deliveringpackages(truck1)
+alltruck2miles = deliveringpackages(truck2)
+alltruck3miles = deliveringpackages(truck3)
 
-truck2miles = deliveringpackages(truck2)
+currenttruck1miles = deliveringpackages(truck1)
+currenttruck2miles = deliveringpackages(truck2)
+currenttruck3miles = deliveringpackages(truck3)
 
-truck3miles = deliveringpackages(truck3)
+# truck1milesremaining = alltruck1miles - currenttruck1miles
+# truck2milesremaining = alltruck2miles - currenttruck2miles
+# truck3milesremaining = alltruck3miles - currenttruck3miles
 
-totalmiles = truck1miles + truck2miles + truck3miles
+totalmiles = currenttruck1miles + currenttruck2miles + currenttruck3miles
 
 
 # calls min_distance_from_address
