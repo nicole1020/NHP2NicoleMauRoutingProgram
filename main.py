@@ -194,23 +194,25 @@ truck3 = Truck('truck3:', 16, 18, loadtruck3, timeobject)
 # deliver next package to the closest address.
 # trouble selecting packages from list by address (https://www.tutorialspoint.com/list-methods-in-python-in-not-in-len-min-max)
 # https://stackoverflow.com/questions/14588367/update-iteration-value-in-python-for-loop
+# https://stackoverflow.com/questions/52875257/nested-for-loop-in-python-doesnt-iterate-fully
+
+# https://gis.stackexchange.com/questions/342586/finding-minimum-distance-from-list-of-coordinates
+
 def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = 0
-    icount = 0
 
-    while icount < len(packagehashtable.table):
+    for pack in packages:
         # take address from hash and find its address id in addressData
         # print(eachaddress)
-        icount += 1
-        package = packagehashtable.search(icount)
+        package = packagehashtable.search(pack)
         add2 = package.address
         fdistance = distanceinbetween(address, add2)
         print("This is the distance in miles between starting address:", address, "& next address:", add2,
               "with distance in miles:", fdistance)
+
         if fdistance < minn:
-            icount += 1
             minn = fdistance
             nextaddress = add2
             nextid = package
@@ -218,39 +220,42 @@ def mindistancefromaddress(address, packages):
         return nextaddress, nextid, minn
 
 
+mindistancefromaddress('4300 S 1300 E', [3,6,18,25,36,38,5,7,8,10,11,12,17,21,22,23])
+
+
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
-def deliveringpackages(trucks):
+def deliveringpackages(truck):
     miles = ''
     nextaddress = ''
     nextid = ''
     minn = ''
-    eachad = ''
 
-    for packs in trucks.packages:
-        nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, trucks.packages)
-    print(trucks)
+    for packs in truck.packages:
+        nextaddress, nextid, minn = mindistancefromaddress(truck.currentlocation, truck.packages)
+    print(truck)
     # update miles based on distance traveled how many miles left, calculate next address, total distance, total distance traveled
     # next address will be trucks current location, calculate time object to calculate time
     return miles
 
+# deliveringpackages(truck2)
 
 # needs to be at end of day
 
-alltruck1miles = deliveringpackages(truck1)
-alltruck2miles = deliveringpackages(truck2)
-alltruck3miles = deliveringpackages(truck3)
+# alltruck1miles = deliveringpackages(truck1)
+# alltruck2miles = deliveringpackages(truck2)
+# alltruck3miles = deliveringpackages(truck3)
 
-currenttruck1miles = deliveringpackages(truck1)
-currenttruck2miles = deliveringpackages(truck2)
-currenttruck3miles = deliveringpackages(truck3)
+# currenttruck1miles = deliveringpackages(truck1)
+# currenttruck2miles = deliveringpackages(truck2)
+# currenttruck3miles = deliveringpackages(truck3)
 
 # truck1milesremaining = alltruck1miles - currenttruck1miles
 # truck2milesremaining = alltruck2miles - currenttruck2miles
 # truck3milesremaining = alltruck3miles - currenttruck3miles
 
-totalmiles = currenttruck1miles + currenttruck2miles + currenttruck3miles
+# totalmiles = currenttruck1miles + currenttruck2miles + currenttruck3miles
 
 
 # calls min_distance_from_address
@@ -273,7 +278,7 @@ if __name__ == '__main__':
         option = input("Chose an option (1,2,or 3): ")
         if option == "1":
             getPackageData()
-            print("\nTotal miles traveled today: ", totalmiles)
+            #print("\nTotal miles traveled today: ", totalmiles)
         elif option == "2":
             print("Please enter package ID for more information")
             packageID = input(" ")
