@@ -198,26 +198,24 @@ def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = 0
-    eachad = 0
+    icount = 0
 
-    for i in range(len(packagehashtable.table) + 1):
+    while icount < len(packagehashtable.table):
         # take address from hash and find its address id in addressData
         # print(eachaddress)
-        package = packagehashtable.search(i+1)
+        icount += 1
+        package = packagehashtable.search(icount)
         add2 = package.address
         fdistance = distanceinbetween(address, add2)
         print("This is the distance in miles between starting address:", address, "& next address:", add2,
               "with distance in miles:", fdistance)
         if fdistance < minn:
-            i += 1
+            icount += 1
             minn = fdistance
             nextaddress = add2
             nextid = package
 
         return nextaddress, nextid, minn
-
-    # if distance < minn , then minn = distance && nextaddress (eachaddress) then our eachaddress will be next address
-    # if best result, eachaddress will be seach hash table for address
 
 
 # 12/10 work on delivering packages next
@@ -228,7 +226,7 @@ def deliveringpackages(trucks):
     nextaddress = ''
     nextid = ''
     minn = ''
-    eachad=''
+    eachad = ''
 
     for packs in trucks.packages:
         nextaddress, nextid, minn = mindistancefromaddress(trucks.currentlocation, trucks.packages)
@@ -239,6 +237,7 @@ def deliveringpackages(trucks):
 
 
 # needs to be at end of day
+
 alltruck1miles = deliveringpackages(truck1)
 alltruck2miles = deliveringpackages(truck2)
 alltruck3miles = deliveringpackages(truck3)
