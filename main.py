@@ -208,10 +208,13 @@ def mindistancefromaddress(address, packages):
         # print(eachaddress)
         package = packagehashtable.search(pack)
         add2 = package.address
+        print(add2)
         fdistance = distanceinbetween(address, add2)
-        print("This is the distance in miles between starting address:", address, "& next address:", add2,
+        print("This is the distance in miles between", address, "&", add2,
               "with distance in miles:", fdistance)
-
+        print(pack)
+        print(max(packages))
+        print(len(packages))
         if fdistance < minn:
             minn = fdistance
             nextaddress = add2
@@ -220,7 +223,7 @@ def mindistancefromaddress(address, packages):
         return nextaddress, nextid, minn
 
 
-mindistancefromaddress('4300 S 1300 E', [3,6,18,25,36,38,5,7,8,10,11,12,17,21,22,23])
+# mindistancefromaddress('4300 S 1300 E', [3, 6, 18, 25, 36, 38, 5, 7, 8, 10, 11, 12, 17, 21, 22, 23])
 
 
 # 12/10 work on delivering packages next
@@ -234,12 +237,13 @@ def deliveringpackages(truck):
 
     for packs in truck.packages:
         nextaddress, nextid, minn = mindistancefromaddress(truck.currentlocation, truck.packages)
-    print(truck)
-    # update miles based on distance traveled how many miles left, calculate next address, total distance, total distance traveled
-    # next address will be trucks current location, calculate time object to calculate time
-    return miles
+        print(truck)
+        # update miles based on distance traveled how many miles left, calculate next address, total distance,
+        # total distance traveled next address will be trucks current location, calculate time object to calculate time
+        return miles
 
-# deliveringpackages(truck2)
+deliveringpackages(truck2)
+
 
 # needs to be at end of day
 
@@ -278,7 +282,7 @@ if __name__ == '__main__':
         option = input("Chose an option (1,2,or 3): ")
         if option == "1":
             getPackageData()
-            #print("\nTotal miles traveled today: ", totalmiles)
+            # print("\nTotal miles traveled today: ", totalmiles)
         elif option == "2":
             print("Please enter package ID for more information")
             packageID = input(" ")
