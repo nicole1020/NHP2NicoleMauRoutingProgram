@@ -203,11 +203,10 @@ def mindistancefromaddress(address, packages):
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = ''
-    pack = ''
 
     for pack in packages:
         # take address from hash and find its address id in addressData
-        # print(eachaddress)
+        # print(eachaddress
         package = packagehashtable.search(pack)
         add2 = package.address
         fdistance = distanceinbetween(address, add2)
@@ -218,7 +217,6 @@ def mindistancefromaddress(address, packages):
             minn = fdistance
             nextaddress = add2
             nextid = pack
-            address = address
     return nextaddress, nextid, minn
 
 # mindistancefromaddress('4300 S 1300 E', [3, 6, 18, 25, 36, 38, 5, 7, 8, 10, 11, 12, 17, 21, 22, 23])
@@ -247,19 +245,19 @@ def deliveringpackages(truck):
 
 #alltruck1miles = deliveringpackages(truck1)
 #alltruck2miles = deliveringpackages(truck2)
-alltruck3miles = deliveringpackages(truck3)
+# alltruck3miles = deliveringpackages(truck3)
 
-# currenttruck1miles = deliveringpackages(truck1)
-# currenttruck2miles = deliveringpackages(truck2)
-# currenttruck3miles = deliveringpackages(truck3)
+#currenttruck1miles = deliveringpackages(truck1)
+#currenttruck2miles = deliveringpackages(truck2)
+currenttruck3miles = deliveringpackages(truck3)
 
 # truck1milesremaining = alltruck1miles - currenttruck1miles
 # truck2milesremaining = alltruck2miles - currenttruck2miles
 # truck3milesremaining = alltruck3miles - currenttruck3miles
 
-# totalmiles = currenttruck1miles + currenttruck2miles + currenttruck3miles
+#totalmiles = currenttruck1miles + currenttruck2miles + currenttruck3miles
 
-
+print("this is total miles of truck3 for the day:", currenttruck3miles)
 
 # calls min_distance_from_address
 # user input into CLI will dictate status of package based on time inputted
