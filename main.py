@@ -213,12 +213,13 @@ def mindistancefromaddress(address, packages):
         fdistance = distanceinbetween(address, add2)
         print("This is the distance in miles between", address, "&", add2,
               "with distance in miles:", fdistance)
+        print(pack)
         if fdistance < minn:
             minn = fdistance
             nextaddress = add2
             nextid = pack
+            address = address
     return nextaddress, nextid, minn
-
 
 # mindistancefromaddress('4300 S 1300 E', [3, 6, 18, 25, 36, 38, 5, 7, 8, 10, 11, 12, 17, 21, 22, 23])
 
@@ -244,8 +245,8 @@ def deliveringpackages(truck):
 
 # needs to be at end of day
 
-alltruck1miles = deliveringpackages(truck1)
-alltruck2miles = deliveringpackages(truck2)
+#alltruck1miles = deliveringpackages(truck1)
+#alltruck2miles = deliveringpackages(truck2)
 alltruck3miles = deliveringpackages(truck3)
 
 # currenttruck1miles = deliveringpackages(truck1)
