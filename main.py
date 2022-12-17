@@ -198,29 +198,25 @@ truck3 = Truck('truck3:', 16, 18, loadtruck3, timeobject)
 
 # https://gis.stackexchange.com/questions/342586/finding-minimum-distance-from-list-of-coordinates
 
-def mindistancefromaddress(address, packages):
+def mindistancefromaddress(address, package):
     minn = 1000  # distance
     nextaddress = ''  # null
-    nextid = 0
+    nextid = ''
+    pack = ''
 
-    for pack in packages:
+    for pack in package:
         # take address from hash and find its address id in addressData
         # print(eachaddress)
         package = packagehashtable.search(pack)
         add2 = package.address
-        print(add2)
         fdistance = distanceinbetween(address, add2)
         print("This is the distance in miles between", address, "&", add2,
               "with distance in miles:", fdistance)
-        print(pack)
-        print(max(packages))
-        print(len(packages))
-        if fdistance < minn:
-            minn = fdistance
-            nextaddress = add2
-            nextid = package
-
-        return nextaddress, nextid, minn
+    if fdistance < minn:
+        minn = fdistance
+        nextaddress = add2
+        nextid = pack
+    return nextaddress, nextid, minn
 
 
 # mindistancefromaddress('4300 S 1300 E', [3, 6, 18, 25, 36, 38, 5, 7, 8, 10, 11, 12, 17, 21, 22, 23])
@@ -237,10 +233,11 @@ def deliveringpackages(truck):
 
     for packs in truck.packages:
         nextaddress, nextid, minn = mindistancefromaddress(truck.currentlocation, truck.packages)
-        print(truck)
-        # update miles based on distance traveled how many miles left, calculate next address, total distance,
-        # total distance traveled next address will be trucks current location, calculate time object to calculate time
-        return miles
+    # print(truck)
+    # update miles based on distance traveled how many miles left, calculate next address, total distance,
+    # total distance traveled next address will be trucks current location, calculate time object to calculate time
+    # return miles
+
 
 deliveringpackages(truck2)
 
