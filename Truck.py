@@ -15,8 +15,3 @@ class Truck:
     def __str__(self):
         return " %s, %s, %s, %s, %s, %s" % (self.number, self.capacity, self.speed, self.packages, self.timeleft, self.currentlocation)
 
-    def starttime(self, param):
-        pass
-
-    def currentaddress(self, param):
-        pass

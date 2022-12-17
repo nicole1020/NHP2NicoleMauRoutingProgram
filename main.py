@@ -112,8 +112,8 @@ def getPackageData():
     print("Packages from Hashtable:")
     # Fetch data from Hash Table
 
-    for i in range(len(packagehashtable.table) + 1):
-        print("PackageID: {}".format(packagehashtable.search(i + 1)))  # 1 to 40 is sent to myHash.search()
+    for i in range(1, 41):
+        print("PackageID: {}".format(packagehashtable.search(i)))  # 1 to 40 is sent to myHash.search()
 
 
 # add up total mileage here with KNN alg
@@ -127,7 +127,10 @@ def distanceinbetween(add1, add2):
     vReturn = 0
     h = addressData.index(add1)
     j = addressData.index(add2)
-    if distanceData[h][j] == '':
+    if h == -1 or j == -1:
+        print("BAD", add1, add2)
+    if j > h:
+        #   if distanceData[h][j] == '':
         vReturn = distanceData[j][h]
     else:
         vReturn = distanceData[h][j]
@@ -141,12 +144,12 @@ def distanceinbetween(add1, add2):
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
 # some must go on truck 3 if special instructions given.
 # loading truck 1, pid, address, delivery time, weight, special notes
-loadtruck1 = list([1, 2, 4, 13, 14, 16, 19, 15, 20, 34, 29, 30, 31, 37, 40, 39])
+loadtruck1 = [1, 2, 4, 13, 14, 16, 19, 15, 20, 34, 29, 30, 31, 37, 40, 39]
 # print(loadtruck1)
 
-loadtruck2 = list([3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38])
+loadtruck2 = [3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38]
 
-loadtruck3 = list([9, 24, 26, 27, 28, 32, 33, 35])
+loadtruck3 = [9, 24, 26, 27, 28, 32, 33, 35]
 
 # all packages in list on trucks
 allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
@@ -199,7 +202,6 @@ truck3 = Truck('truck3:', 16, 18, loadtruck3, timeobject)
 # https://gis.stackexchange.com/questions/342586/finding-minimum-distance-from-list-of-coordinates
 
 def mindistancefromaddress(address, packages):
-
     minn = 1000  # distance
     nextaddress = ''  # null
     nextid = ''
@@ -208,16 +210,20 @@ def mindistancefromaddress(address, packages):
         # take address from hash and find its address id in addressData
         # print(eachaddress
         package = packagehashtable.search(pack)
-        add2 = package.address
-        fdistance = distanceinbetween(address, add2)
-        print("This is the distance in miles between", address, "&", add2,
-              "with distance in miles:", fdistance)
-        print(pack)
-        if fdistance < minn:
-            minn = fdistance
-            nextaddress = add2
-            nextid = pack
+        if address != package.address:
+            fdistance = distanceinbetween(address, package.address)
+            #   print("This is the distance in miles between", address, "&", add2,
+            #          "with distance in miles:", fdistance)
+            #   print(pack)
+            if fdistance < minn:
+                minn = fdistance
+                nextaddress = package.address
+                nextid = package.id
+    if minn == 1000:
+        print("MINN", address, nextaddress, packages)
+
     return nextaddress, nextid, minn
+
 
 # mindistancefromaddress('4300 S 1300 E', [3, 6, 18, 25, 36, 38, 5, 7, 8, 10, 11, 12, 17, 21, 22, 23])
 
@@ -226,38 +232,50 @@ def mindistancefromaddress(address, packages):
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
 
 def deliveringpackages(truck):
-    miles = ''
-    nextaddress = ''
+    miles = 0
+    next_address = ''
     nextid = ''
     minn = ''
+    current_time = truck.timeleft
+    current_address = addressData[0]
 
-    for packs in truck.packages:
-        nextaddress, nextid, minn = mindistancefromaddress(truck.currentlocation, truck.packages)
-    # print(truck) update miles based on distance traveled how many miles left, calculate next address,
-    # total distance, total distance traveled next address will be trucks current location, calculate time object to
-    # calculate time 18MPH
+    while len(truck.packages) > 0:
+        for packs in truck.packages:
+            packageobj = packagehashtable.search(packs)
+    #        if packageobj.address != current_address:
+            next_address, nextid, minn = mindistancefromaddress(current_address, truck.packages)
+            # print(truck) update miles based on distance traveled how many miles left, calculate next address,
+            # total distance, total distance traveled next address will be trucks current location, calculate time object to
+            # calculate time 18MPH.
+            current_time += datetime.timedelta(hours=minn / 18)
+            packageobj.delivery_time = current_time
+            packageobj.mileage = minn
+            current_address = next_address
+            truck.packages.remove(packageobj.id)
+            miles += minn
     return miles
 
 
+# [9, 24, 26, 27, 28, 32, 33, 35]
 
 
 # needs to be at end of day
 
-#alltruck1miles = deliveringpackages(truck1)
-#alltruck2miles = deliveringpackages(truck2)
+# alltruck1miles = deliveringpackages(truck1)
+# alltruck2miles = deliveringpackages(truck2)
 # alltruck3miles = deliveringpackages(truck3)
 
-#currenttruck1miles = deliveringpackages(truck1)
+currenttruck1miles = deliveringpackages(truck3)
 #currenttruck2miles = deliveringpackages(truck2)
-currenttruck3miles = deliveringpackages(truck3)
+#currenttruck3miles = deliveringpackages(truck3)
 
 # truck1milesremaining = alltruck1miles - currenttruck1miles
 # truck2milesremaining = alltruck2miles - currenttruck2miles
 # truck3milesremaining = alltruck3miles - currenttruck3miles
 
-#totalmiles = currenttruck1miles + currenttruck2miles + currenttruck3miles
+#total_miles = currenttruck1miles + currenttruck2miles + currenttruck3miles
+print("This is total miles for the day:", currenttruck1miles)
 
-print("this is total miles of truck3 for the day:", currenttruck3miles)
 
 # calls min_distance_from_address
 # user input into CLI will dictate status of package based on time inputted
@@ -267,7 +285,7 @@ def getPackageDataTime():
 
 if __name__ == '__main__':
     print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm (Nearest Neighbor)")
-
+#    print("This is total miles for the day:", total_miles)
     # loop until user is satisfied
     isExit = True
     while (isExit):
@@ -279,6 +297,7 @@ if __name__ == '__main__':
         option = input("Chose an option (1,2,or 3): ")
         if option == "1":
             getPackageData()
+
             # print("\nTotal miles traveled today: ", totalmiles)
         elif option == "2":
             print("Please enter package ID for more information")
