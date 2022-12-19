@@ -4,7 +4,7 @@
 class Truck:
 
     def __init__(self, number, capacity, speed, packages, timeleft):
-        self.number= number
+        self.number = number
         self.capacity = capacity
         self.speed = speed
         self.packages = packages

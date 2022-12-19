@@ -8,7 +8,10 @@ import csv
 from Hash import ChainingHashTable
 from Package import Package
 from Truck import Truck
-import datetime
+
+# import datetime
+from datetime import datetime, timedelta
+
 
 # Hash table instance
 packagehashtable = ChainingHashTable()
@@ -159,7 +162,7 @@ allpackagesarray = loadtruck1 + loadtruck2 + loadtruck3
 
 starttime1 = '08:00:00'
 h, m, s = starttime1.split(':')
-timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+timeobject = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
 truck1 = Truck('truck1:', 16, 18, loadtruck1, timeobject)
@@ -169,13 +172,13 @@ truck1 = Truck('truck1:', 16, 18, loadtruck1, timeobject)
 
 starttime2 = '09:05:00'
 h, m, s = starttime2.split(':')
-timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+timeobject = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
 truck2 = Truck('truck2:', 16, 18, loadtruck2, timeobject)
 starttime3 = '11:00:00'
 h, m, s = starttime3.split(':')
-timeobject = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+timeobject = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
 truck3 = Truck('truck3:', 16, 18, loadtruck3, timeobject)
@@ -230,29 +233,25 @@ def mindistancefromaddress(address, packages):
 
 # 12/10 work on delivering packages next
 # delivering_packages(truck, starttime) return miles, calls min_distance_from_address
+# rounding seconds https://stackoverflow.com/questions/47792242/rounding-time-off-to-the-nearest-second-python
 
 def deliveringpackages(truck):
     miles = 0
     next_address = ''
     nextid = ''
     minn = ''
-    time_departed = truck.timeleft
-    current_time = datetime.datetime.now()
+    current_truck_time = truck.timeleft
+    this_time = datetime.now()
+    round_time = this_time.time()
+    current_time = round_time.replace(microsecond=0)
     current_address = addressData[0]
-
+    for packageID in truck.packages:
+        package_found = packagehashtable.search(packageID)
+        package_found.time_left = truck.timeleft
     while len(truck.packages) > 0:
         for packs in truck.packages:
             packageobj = packagehashtable.search(packs)
             #        if packageobj.address != current_address:
-            if current_time > time_departed or packageobj.delivery_time is None or packageobj.delivery_time > current_time:
-
-                packageobj.status = 'In Transit'
-
-            if packageobj.address == "4001 State Street E":
-                packageobj.status = 'At Hub'
-
-            if packageobj.delivery_time < current_time:
-                packageobj.status = "Delivered"
 
             if len(truck.packages) > 1:
                 next_address, nextid, minn = mindistancefromaddress(current_address, truck.packages)
@@ -260,8 +259,8 @@ def deliveringpackages(truck):
             # print(truck) update miles based on distance traveled how many miles left, calculate next address,
             # total distance, total distance traveled next address will be trucks current location, calculate time
             # object to calculate time 18MPH.
-            time_departed += datetime.timedelta(hours=minn / 18)
-            packageobj.delivery_time = time_departed
+            current_truck_time += timedelta(hours=minn / 18)
+            packageobj.delivery_time = current_truck_time
             packageobj.mileage = minn
             current_address = next_address
             truck.packages.remove(packageobj.id)
@@ -295,14 +294,19 @@ total_miles = currenttruck1miles + currenttruck2miles + currenttruck3miles
 # calls min_distance_from_address
 # user input into CLI will dictate status of package based on time inputted
 # https://www.programiz.com/python-programming/csv
-def getPackageDataTime(time):
-    packagetime = '00:00:00'
-    while open('package.csv', 'w'):
-        writer = csv.writer(open('packages.csv', 'w'))
-        package = packagehashtable.search(packagetime)
-        dl = package.deadline
-
-        writer.writerows(package.status)
+def getPackageDataTime(user_time_delta, user_id_request):
+    print("Printing package data by id:")
+    # Fetch data from Hash Table
+    package_found = packagehashtable.search(int(user_id_request))
+    if package_found.time_left < user_time_delta < package_found.delivery_time:
+        print(package_found)
+        print("In route")
+    elif user_time_delta >= package_found.delivery_time:
+        print(package_found)
+        print('delivered')
+    else:
+        print(package_found)
+        print("At Hub")
 
 
 if __name__ == '__main__':
@@ -315,9 +319,11 @@ if __name__ == '__main__':
         print("\nOptions:")
         print("1. Print All Package Statuses")
         print("2. Get a Single Package Status with ID")
-        print("3. Get Package Status with a Time")
-        print("4. Exit the Program")
-        option = input("Chose an option (1,2,or 3): ")
+        print("3. Get a single Package Status with a Time")
+        print("4. Get all packages with time")
+        print("5. Truck Information")
+        print("6. Exit the Program")
+        option = input("Chose an option (1,2,3,4 or 5): ")
         if option == "1":
             getPackageData()
 
@@ -329,14 +335,24 @@ if __name__ == '__main__':
             print(searchresult)
 
         elif option == "3":
-            print("Please enter a time in format 00:00:00 for more information:")
-            time = input(" ")
-            timeresult = packagehashtable.search("delivered")
-            print(timeresult)
 
+            print("Please enter a time for more information: Hours")
+            user_time_hours = input(" ")
+            print("Please enter a time for more information: Minutes")
+            user_time_minutes = input(" ")
+            user_time_delta = timedelta(int(user_time_hours), int(user_time_minutes), int(0))
+            #user_time = timedelta(user_time_delta).date()
+            print("Please enter a packageID")
+            user_id_request = input(" ")
+
+            getPackageDataTime(user_time_delta, user_id_request)
+            # status = as delivered change from status/
+            # take usertime and go through packages on truck and if at 10:00 am and look at delivery time of 1st package and it's at 9
 
 
         elif option == "4":
+            print(truck1, truck2, truck3)
+        elif option == "5":
             isExit = False
         else:
             print("Invalid option, please try again!")

@@ -13,8 +13,9 @@ class Package:
         self.status = status
         self.delivery_time = None
         self.mileage = 0
+        self.time_left = None
 
     def __str__(self):  # overwite print(Package) otherwise it will print object reference
-        return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s " % (
-            self.id, self.address, self.city, self.state, self.zip, self.deadline, self.delivery_time, self.mileage,
+        return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s " % (
+            self.id, self.address, self.city, self.state, self.zip, self.deadline, self.time_left, self.delivery_time, self.mileage,
             self.weight, self.notes, self.status)
