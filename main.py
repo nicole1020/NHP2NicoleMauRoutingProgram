@@ -109,7 +109,7 @@ distanceData = [
 
 
 def getPackageData():
-    print("Packages from Hashtable:")
+    print("Packages from Hashtable: in format (ID,Address,City,State,Zip,Deadline,DeliveryTime, Mileage,Weight,Notes)")
     # Fetch data from Hash Table
 
     for i in range(1, 41):
@@ -236,19 +236,32 @@ def deliveringpackages(truck):
     next_address = ''
     nextid = ''
     minn = ''
-    current_time = truck.timeleft
+    time_departed = truck.timeleft
+    current_time = datetime.datetime.now()
     current_address = addressData[0]
 
     while len(truck.packages) > 0:
         for packs in truck.packages:
             packageobj = packagehashtable.search(packs)
-    #        if packageobj.address != current_address:
-            next_address, nextid, minn = mindistancefromaddress(current_address, truck.packages)
+            #        if packageobj.address != current_address:
+            if current_time > time_departed or packageobj.delivery_time is None or packageobj.delivery_time > current_time:
+
+                packageobj.status = 'In Transit'
+
+            if packageobj.address == "4001 State Street E":
+                packageobj.status = 'At Hub'
+
+            if packageobj.delivery_time < current_time:
+                packageobj.status = "Delivered"
+
+            if len(truck.packages) > 1:
+                next_address, nextid, minn = mindistancefromaddress(current_address, truck.packages)
+
             # print(truck) update miles based on distance traveled how many miles left, calculate next address,
-            # total distance, total distance traveled next address will be trucks current location, calculate time object to
-            # calculate time 18MPH.
-            current_time += datetime.timedelta(hours=minn / 18)
-            packageobj.delivery_time = current_time
+            # total distance, total distance traveled next address will be trucks current location, calculate time
+            # object to calculate time 18MPH.
+            time_departed += datetime.timedelta(hours=minn / 18)
+            packageobj.delivery_time = time_departed
             packageobj.mileage = minn
             current_address = next_address
             truck.packages.remove(packageobj.id)
@@ -265,32 +278,42 @@ def deliveringpackages(truck):
 # alltruck2miles = deliveringpackages(truck2)
 # alltruck3miles = deliveringpackages(truck3)
 
-currenttruck1miles = deliveringpackages(truck3)
-#currenttruck2miles = deliveringpackages(truck2)
-#currenttruck3miles = deliveringpackages(truck3)
+currenttruck1miles = deliveringpackages(truck1)
+currenttruck2miles = deliveringpackages(truck2)
+currenttruck3miles = deliveringpackages(truck3)
 
 # truck1milesremaining = alltruck1miles - currenttruck1miles
 # truck2milesremaining = alltruck2miles - currenttruck2miles
 # truck3milesremaining = alltruck3miles - currenttruck3miles
 
-#total_miles = currenttruck1miles + currenttruck2miles + currenttruck3miles
-print("This is total miles for the day:", currenttruck1miles)
+total_miles = currenttruck1miles + currenttruck2miles + currenttruck3miles
+
+
+#    print("This is total miles for the day:", total_miles)
 
 
 # calls min_distance_from_address
 # user input into CLI will dictate status of package based on time inputted
-def getPackageDataTime():
-    pass
+# https://www.programiz.com/python-programming/csv
+def getPackageDataTime(time):
+    packagetime = '00:00:00'
+    while open('package.csv', 'w'):
+        writer = csv.writer(open('packages.csv', 'w'))
+        package = packagehashtable.search(packagetime)
+        dl = package.deadline
+
+        writer.writerows(package.status)
 
 
 if __name__ == '__main__':
     print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm (Nearest Neighbor)")
-#    print("This is total miles for the day:", total_miles)
+    print("This is total miles for the day:", total_miles)
+
     # loop until user is satisfied
     isExit = True
     while (isExit):
         print("\nOptions:")
-        print("1. Print All Package Status and Total Mileage")
+        print("1. Print All Package Statuses")
         print("2. Get a Single Package Status with ID")
         print("3. Get Package Status with a Time")
         print("4. Exit the Program")
@@ -306,7 +329,13 @@ if __name__ == '__main__':
             print(searchresult)
 
         elif option == "3":
-            getPackageDataTime()
+            print("Please enter a time in format 00:00:00 for more information:")
+            time = input(" ")
+            timeresult = packagehashtable.search("delivered")
+            print(timeresult)
+
+
+
         elif option == "4":
             isExit = False
         else:
