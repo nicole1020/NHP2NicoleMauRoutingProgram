@@ -12,7 +12,6 @@ from Truck import Truck
 # import datetime
 from datetime import datetime, timedelta
 
-
 # Hash table instance
 packagehashtable = ChainingHashTable()
 
@@ -295,7 +294,35 @@ total_miles = currenttruck1miles + currenttruck2miles + currenttruck3miles
 # user input into CLI will dictate status of package based on time inputted
 # https://www.programiz.com/python-programming/csv
 def getPackageDataTime(user_time_delta, user_id_request):
-    print("Printing package data by id:")
+    print("Printing package data by id and time inputs:")
+    # Fetch data from Hash Table
+    package_found = packagehashtable.search(int(user_id_request))
+    if package_found.time_left < user_time_delta < package_found.delivery_time:
+        print(package_found)
+        print("In route")
+    elif user_time_delta >= package_found.delivery_time:
+        print(package_found)
+        print('delivered')
+    else:
+        print(package_found)
+        print("At Hub")
+
+def getAllPackagesAtAGivenTime(user_time_delta_all_Search):
+    print("Printing package data by id and time inputs:")
+
+    for i in range(1, 41):
+        allpackages = packagehashtable.search(i)  # 1 to 40 is sent to myHash.search()
+        if allpackages.time_left < user_time_delta_all_Search < allpackages.delivery_time:
+            print(allpackages)
+            print("  In route")
+        elif user_time_delta_all_Search >= allpackages.delivery_time:
+            print(allpackages)
+            print('  Delivered')
+        else:
+            print(allpackages)
+            print("  At Hub")
+def getTruckDataOnInput(user_truck_input, user_time_delta_trucks):
+    print("Printing Truck data by truck id and time inputs:")
     # Fetch data from Hash Table
     package_found = packagehashtable.search(int(user_id_request))
     if package_found.time_left < user_time_delta < package_found.delivery_time:
@@ -320,7 +347,7 @@ if __name__ == '__main__':
         print("1. Print All Package Statuses")
         print("2. Get a Single Package Status with ID")
         print("3. Get a single Package Status with a Time")
-        print("4. Get all packages with time")
+        print("4. Get all packages with a time")
         print("5. Truck Information")
         print("6. Exit the Program")
         option = input("Chose an option (1,2,3,4 or 5): ")
@@ -329,28 +356,58 @@ if __name__ == '__main__':
 
             # print("\nTotal miles traveled today: ", totalmiles)
         elif option == "2":
-            print("Please enter package ID for more information")
+            print("Please enter a unique package ID for more information")
             packageID = input(" ")
             searchresult = packagehashtable.search(int(packageID))
             print(searchresult)
 
         elif option == "3":
-
-            print("Please enter a time (HH:MM) for more information:")
+            print("Please enter a packageID")
+            user_id_request = input(" ")
+            print("Please enter a time (HH:MM) for single package information:")
             user_time_hours = input(" ")
             h, m = user_time_hours.split(':')
             user_time_delta = timedelta(hours=int(h), minutes=int(m))
-            #user_time = timedelta(user_time_delta).date()
-            print("Please enter a packageID")
-            user_id_request = input(" ")
+            # user_time = timedelta(user_time_delta).date()
+
             getPackageDataTime(user_time_delta, user_id_request)
             # status = as delivered change from status/
             # take usertime and go through packages on truck and if at 10:00 am and look at delivery time of 1st package and it's at 9
 
 
         elif option == "4":
-            print(truck1, truck2, truck3)
+            print("Please enter a time (HH:MM) for all package information:")
+            user_time_search_all = input(" ")
+            h, m = user_time_search_all.split(':')
+            user_time_delta_all_Search = timedelta(hours=int(h), minutes=int(m))
+            getAllPackagesAtAGivenTime(user_time_delta_all_Search)
         elif option == "5":
+            print("Please enter a truckid: '1', '2', or '3'")
+            user_truck_input = input(" ")
+            print("Please enter a time (HH:MM) for single truck information:")
+            user_truck_hours = input(" ")
+            h, m = user_truck_hours.split(':')
+            user_time_delta_trucks = timedelta(hours=int(h), minutes=int(m))
+            getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
+            if user_truck_input == '1':
+                while len(truck1.packages) > 0:
+                    for packs1 in truck1.packages:
+                        truck1pack = packagehashtable.search(packs1)
+                    getTruckDataOnInput(truck1)
+            elif user_truck_input == '2':
+                while len(loadtruck2) > 0:
+                    for packs2 in truck2.packages:
+                        truck2pack = packagehashtable.search(packs2)
+                    getTruckDataOnInput(truck2)
+            elif user_truck_input == '3':
+                while len(loadtruck3) > 0:
+                    for packs3 in truck3.packages:
+                        truck3pack = packagehashtable.search(packs3)
+                    getTruckDataOnInput(truck3)
+            else:
+                print('invalid truck option, please enter truck1, truck2, or truck3')
+        #  getTruckDataOnInput(user_truck_input)
+        elif option == '6':
             isExit = False
         else:
             print("Invalid option, please try again!")
