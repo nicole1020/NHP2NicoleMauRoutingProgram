@@ -336,15 +336,13 @@ if __name__ == '__main__':
 
         elif option == "3":
 
-            print("Please enter a time for more information: Hours")
+            print("Please enter a time (HH:MM) for more information:")
             user_time_hours = input(" ")
-            print("Please enter a time for more information: Minutes")
-            user_time_minutes = input(" ")
-            user_time_delta = timedelta(int(user_time_hours), int(user_time_minutes), int(0))
+            h, m = user_time_hours.split(':')
+            user_time_delta = timedelta(hours=int(h), minutes=int(m))
             #user_time = timedelta(user_time_delta).date()
             print("Please enter a packageID")
             user_id_request = input(" ")
-
             getPackageDataTime(user_time_delta, user_id_request)
             # status = as delivered change from status/
             # take usertime and go through packages on truck and if at 10:00 am and look at delivery time of 1st package and it's at 9
