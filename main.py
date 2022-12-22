@@ -185,7 +185,6 @@ truck3 = Truck('truck3:', 16, 18, loadtruck3, timeobject)
 
 # test print truck
 
-
 # https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm work here next 12/6-7
 # C.2) Function to find min distance/address:
 # 10-Define minDistanceFrom(fromAddress, truckPackages)
@@ -307,6 +306,7 @@ def getPackageDataTime(user_time_delta, user_id_request):
         print(package_found)
         print("At Hub")
 
+
 def getAllPackagesAtAGivenTime(user_time_delta_all_Search):
     print("Printing package data by id and time inputs:")
 
@@ -321,19 +321,19 @@ def getAllPackagesAtAGivenTime(user_time_delta_all_Search):
         else:
             print(allpackages)
             print("  At Hub")
+
+
 def getTruckDataOnInput(user_truck_input, user_time_delta_trucks):
     print("Printing Truck data by truck id and time inputs:")
     # Fetch data from Hash Table
-    package_found = packagehashtable.search(int(user_id_request))
-    if package_found.time_left < user_time_delta < package_found.delivery_time:
-        print(package_found)
-        print("In route")
-    elif user_time_delta >= package_found.delivery_time:
-        print(package_found)
-        print('delivered')
-    else:
-        print(package_found)
-        print("At Hub")
+    # decrement package load (3) (pop etc) get current address based on time
+    # maybe get last address visited as closest for current location
+    # print(truck1.currentlocation)
+    #  print(truck1) here searches most recent package for truck
+    closest_search = packagehashtable.search(user_time_delta_trucks)
+    user_truck_input.currentlocation = closest_search
+    print("Truck current location and packages remaining on truck:", user_truck_input.currentlocation,
+          user_truck_input.packages)
 
 
 if __name__ == '__main__':
@@ -350,7 +350,7 @@ if __name__ == '__main__':
         print("4. Get all packages with a time")
         print("5. Truck Information")
         print("6. Exit the Program")
-        option = input("Chose an option (1,2,3,4 or 5): ")
+        option = input("Chose an option (1,2,3,4,5, or 6): ")
         if option == "1":
             getPackageData()
 
@@ -382,28 +382,21 @@ if __name__ == '__main__':
             user_time_delta_all_Search = timedelta(hours=int(h), minutes=int(m))
             getAllPackagesAtAGivenTime(user_time_delta_all_Search)
         elif option == "5":
-            print("Please enter a truckid: '1', '2', or '3'")
+            print("Please enter a truckid: 'truck1', 'truck2', or 'truck3'")
             user_truck_input = input(" ")
             print("Please enter a time (HH:MM) for single truck information:")
             user_truck_hours = input(" ")
             h, m = user_truck_hours.split(':')
             user_time_delta_trucks = timedelta(hours=int(h), minutes=int(m))
-            getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
-            if user_truck_input == '1':
-                while len(truck1.packages) > 0:
-                    for packs1 in truck1.packages:
-                        truck1pack = packagehashtable.search(packs1)
-                    getTruckDataOnInput(truck1)
-            elif user_truck_input == '2':
-                while len(loadtruck2) > 0:
-                    for packs2 in truck2.packages:
-                        truck2pack = packagehashtable.search(packs2)
-                    getTruckDataOnInput(truck2)
-            elif user_truck_input == '3':
-                while len(loadtruck3) > 0:
-                    for packs3 in truck3.packages:
-                        truck3pack = packagehashtable.search(packs3)
-                    getTruckDataOnInput(truck3)
+            if user_truck_input == 'truck1':
+                getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
+                print("Truck1, capacity, speed, package ids, departure time, current location\n", truck1)
+            elif user_truck_input == 'truck2':
+                getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
+                print("Truck2, capacity, speed, package ids, departure time, current location\n", truck2)
+            elif user_truck_input == 'truck3':
+                getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
+                print("Truck3, capacity, speed, package ids, departure time, current location\n", truck3)
             else:
                 print('invalid truck option, please enter truck1, truck2, or truck3')
         #  getTruckDataOnInput(user_truck_input)
