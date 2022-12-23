@@ -1,8 +1,7 @@
-# C950 Data Structures and Algorithms II - NHP2 - Routing Program Nicole Mau
+# Nicole Mau- StudentID: 001336361
+# C950 Data Structures and Algorithms II - NHP2 - Routing Program
 # Ref: zyBooks: Figure 7.8.2: Hash table using chaining.
-# Ref: zyBooks: 3.3.1: MakeChange greedy algorithm.
-# Ref: zyBooks: zyDE 6.12.1: Dijkstra's shortest path example.
-# Ref: Graph Data Structure 4.
+
 import csv
 from Hash import ChainingHashTable
 from Package import Package
@@ -110,7 +109,8 @@ distanceData = [
 
 
 def getPackageData():
-    print("Packages from Hashtable: in format (ID,Address,City,State,Zip,Deadline,DeliveryTime, Mileage,Weight,Notes)")
+    print("Packages from Hashtable: in format (Package ID, Address, City, State, Zip, Deadline, Time Left, Delivery Time, "
+          "Mileage, Weight, Notes, Status)")
     # Fetch data from Hash Table
 
     for i in range(1, 41):
@@ -174,6 +174,8 @@ timeobject = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
 truck2 = Truck('truck2:', 16, 18, loadtruck2, timeobject)
+
+# truck 3 leaves after truck 1 returns at 10:20
 starttime3 = '10:22:00'
 h, m, s = starttime3.split(':')
 timeobject = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
@@ -319,13 +321,13 @@ def getAllPackagesAtAGivenTime(user_time_delta_all_Search):
         allpackages = packagehashtable.search(i)  # 1 to 40 is sent to myHash.search()
         if allpackages.time_left < user_time_delta_all_Search < allpackages.delivery_time:
             print(
-                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime, {allpackages.weight},{allpackages.notes}, status: In Route")
+                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime,{allpackages.miles}, {allpackages.weight},{allpackages.notes}, Status: In Route")
 
         elif user_time_delta_all_Search >= allpackages.delivery_time:
             print(allpackages)
         else:
             print(
-                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime, {allpackages.weight},{allpackages.notes}, status: At Hub")
+                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime,{allpackages.miles}, {allpackages.weight},{allpackages.notes}, Status: At Hub")
 
 
 def getTruckInputInfo(user_truck_input):
