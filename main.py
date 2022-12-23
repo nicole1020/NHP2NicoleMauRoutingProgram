@@ -240,11 +240,8 @@ def deliveringpackages(truck):
     nextid = ''
     minn = ''
     current_truck_time = truck.timeleft
-    this_time = datetime.now()
-    round_time = this_time.time()
-    current_time = round_time.replace(microsecond=0)
     current_address = addressData[0]
-    #  package_delivery_log_file = open("Delivery_log.txt", "a")
+
     for packageID in truck.packages:
         package_found = packagehashtable.search(packageID)
         package_found.time_left = truck.timeleft
