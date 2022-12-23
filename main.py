@@ -243,6 +243,7 @@ def deliveringpackages(truck):
     round_time = this_time.time()
     current_time = round_time.replace(microsecond=0)
     current_address = addressData[0]
+    #  package_delivery_log_file = open("Delivery_log.txt", "a")
     for packageID in truck.packages:
         package_found = packagehashtable.search(packageID)
         package_found.time_left = truck.timeleft
@@ -263,6 +264,9 @@ def deliveringpackages(truck):
             current_address = next_address
             truck.packages.remove(packageobj.id)
             miles += minn
+            # https://www.geeksforgeeks.org/reading-writing-text-files-python/
+            # printing results to a text file
+            # package_delivery_log_file.close()
     return miles
 
 
@@ -330,15 +334,31 @@ def getTruckDataOnInput(user_truck_input, user_time_delta_trucks):
     # maybe get last address visited as closest for current location
     # print(truck1.currentlocation)
     #  print(truck1) here searches most recent package for truck
-    closest_search = packagehashtable.search(user_time_delta_trucks)
-    user_truck_input.currentlocation = closest_search
-    print("Truck current location and packages remaining on truck:", user_truck_input.currentlocation,
-          user_truck_input.packages)
+
+    if user_truck_input == 'truck1':
+        in_miles = user_time_delta_trucks / 18
+        closest_search = packagehashtable.search(in_miles)
+        truck1.currentlocation = closest_search
+        print("Truck1 current location and packages remaining on truck1:\n", truck1.currentlocation, truck1.packages)
+
+    elif user_truck_input == 'truck2':
+        closest_search2 = packagehashtable.search(user_time_delta_trucks)
+        truck2.currentlocation = closest_search2
+
+        print("Truck2 current location and packages remaining on truck2:\n", truck2.currentlocation,
+              truck2.packages)
+
+    elif user_truck_input == 'truck3':
+        closest_search3 = packagehashtable.search(user_time_delta_trucks)
+        truck3.currentlocation = closest_search3
+
+        print("Truck3 current location and packages remaining on truck3:\n", truck3.currentlocation,
+              truck3.packages)
 
 
 if __name__ == '__main__':
     print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm (Nearest Neighbor)")
-    print("This is total miles for the day:", total_miles)
+    print("Category G: This is total miles for the day=", total_miles)
 
     # loop until user is satisfied
     isExit = True
@@ -390,13 +410,13 @@ if __name__ == '__main__':
             user_time_delta_trucks = timedelta(hours=int(h), minutes=int(m))
             if user_truck_input == 'truck1':
                 getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
-                print("Truck1, capacity, speed, package ids, departure time, current location\n", truck1)
+                print("TruckID, capacity, speed, package ids, departure time, current location\n", truck1)
             elif user_truck_input == 'truck2':
                 getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
-                print("Truck2, capacity, speed, package ids, departure time, current location\n", truck2)
+                print("TruckID, capacity, speed, package ids, departure time, current location\n", truck2)
             elif user_truck_input == 'truck3':
                 getTruckDataOnInput(user_truck_input, user_time_delta_trucks)
-                print("Truck3, capacity, speed, package ids, departure time, current location\n", truck3)
+                print("TruckID, capacity, speed, package ids, departure time, current location\n", truck3)
             else:
                 print('invalid truck option, please enter truck1, truck2, or truck3')
         #  getTruckDataOnInput(user_truck_input)
