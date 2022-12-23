@@ -174,7 +174,7 @@ timeobject = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
 
 truck2 = Truck('truck2:', 16, 18, loadtruck2, timeobject)
-starttime3 = '11:00:00'
+starttime3 = '10:22:00'
 h, m, s = starttime3.split(':')
 timeobject = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 # print(timeobject)
@@ -351,7 +351,7 @@ def getTruckDataOnInputTime(user_time_delta_trucks):
 
 
 if __name__ == '__main__':
-    print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Greedy Algorithm (Nearest Neighbor)")
+    print("\nWelcome to C950: Routing Program: Hash Table, CSV Import, Nearest Neighbor algorithm")
     print("Category G: This is total miles for the day=", total_miles)
 
     # loop until user is satisfied
@@ -369,7 +369,7 @@ if __name__ == '__main__':
 
             # print("\nTotal miles traveled today: ", totalmiles)
         elif option == "2":
-            print("Please enter a unique package ID for more information")
+            print("Please enter a Package ID number for more information")
             packageID = input(" ")
             searchresult = packagehashtable.search(int(packageID))
             print(searchresult)
