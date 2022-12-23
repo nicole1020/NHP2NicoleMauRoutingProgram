@@ -321,13 +321,13 @@ def getAllPackagesAtAGivenTime(user_time_delta_all_Search):
         allpackages = packagehashtable.search(i)  # 1 to 40 is sent to myHash.search()
         if allpackages.time_left < user_time_delta_all_Search < allpackages.delivery_time:
             print(
-                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime,{allpackages.miles}, {allpackages.weight},{allpackages.notes}, Status: In Route")
+                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime,{allpackages.mileage}, {allpackages.weight},{allpackages.notes}, Status: In Route")
 
         elif user_time_delta_all_Search >= allpackages.delivery_time:
             print(allpackages)
         else:
             print(
-                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime,{allpackages.miles}, {allpackages.weight},{allpackages.notes}, Status: At Hub")
+                f"Package ID {allpackages.id}, {allpackages.address}, {allpackages.city}, {allpackages.state}, {allpackages.zip},{allpackages.deadline}, {allpackages.time_left}, deliverytime,{allpackages.mileage}, {allpackages.weight},{allpackages.notes}, Status: At Hub")
 
 
 def getTruckInputInfo(user_truck_input):
