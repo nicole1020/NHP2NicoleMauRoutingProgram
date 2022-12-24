@@ -145,10 +145,10 @@ def distanceinbetween(add1, add2):
 # some packages must be on the same truck, first 2 trucks are for standard deliveries.
 # some must go on truck 3 if special instructions given.
 # loading truck 1, pid, address, delivery time, weight, special notes
-loadtruck1 = [1, 2, 4, 13, 14, 16, 19, 15, 20, 34, 29, 30, 31, 37, 40, 39]
+loadtruck1 = [15, 14, 16, 2, 4, 13,  1, 19, 20, 34, 29, 30, 31, 37, 40, 39]
 # print(loadtruck1)
 
-loadtruck2 = [3, 5, 6, 7, 8, 10, 11, 12, 17, 18, 21, 22, 23, 25, 36, 38]
+loadtruck2 = [3, 5,  7, 8, 10, 11, 12, 17, 18,6, 21, 22, 23, 25, 36, 38]
 
 loadtruck3 = [9, 24, 26, 27, 28, 32, 33, 35]
 
