@@ -9,9 +9,7 @@
 C950 WGUPS Algorithm Overview
 
 
-Nicole Mau
-ID: 001336361
-WGU Email: nmau@wgu.edu
+
 Date: 12.20.2022
 
 C950 Data Structures and Algorithms II
